@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import {ChampionsContainer} from "./models/dto/containers/champions-container";
-import {ItemsContainer} from "./models/dto/containers/items-container";
-import {SummonerspellsContainer} from "./models/dto/containers/summonerspells-container";
 import {Router} from "@angular/router";
 import {PlatformLocation} from "@angular/common";
 import {GameMetadataService} from "./services/game-metadata.service";
@@ -18,10 +15,6 @@ export class AppComponent {
   private is_setup_ready: boolean = false;
   private is_konami_triggered: boolean = false;
   private is_metadata_ready: boolean = false;
-
-  public champions: ChampionsContainer;
-  public items: ItemsContainer;
-  public summonerspells: SummonerspellsContainer;
 
   constructor(private platformLocation: PlatformLocation,
               private router: Router,
@@ -52,9 +45,6 @@ export class AppComponent {
     let initial_sub = this.metadata.requests_finished$
       .subscribe(finished => {
         if (finished && this.metadata.is_ready) {
-          this.champions = this.metadata.champions;
-          this.items = this.metadata.items;
-          this.summonerspells = this.metadata.summonerspells;
           this.is_metadata_ready = true;
           initial_sub.unsubscribe();
         }
