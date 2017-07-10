@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Summoner} from "../../models/dto/summoner";
-import {Observable} from "rxjs/Observable";
 import {SummonerspellsContainer} from "../../models/dto/containers/summonerspells-container";
 import {ItemsContainer} from "../../models/dto/containers/items-container";
 import {ChampionsContainer} from "../../models/dto/containers/champions-container";
-import {ResType} from "../../enums/api-response-type";
-import {StaticApiService} from "../../services/static-api.service";
 import {GameMetadataService} from "../../services/game-metadata.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'match',
@@ -19,6 +17,7 @@ export class MatchComponent implements OnInit {
   private champions: ChampionsContainer;
   private items: ItemsContainer;
   private summonerspells: SummonerspellsContainer;
+  private initial_sub: Subscription;
   private is_metadata_ready: boolean = false;
 
   private game_possibly_started: boolean = false;
@@ -44,14 +43,15 @@ export class MatchComponent implements OnInit {
 
   ngOnInit() {
     this.metadata.load();
-    let initial_sub = this.metadata.requests_finished$
-      .subscribe(finished => {
-        if (finished && this.metadata.is_ready) {
-          this.champions = this.metadata.champions;
-          this.items = this.metadata.items;
-          this.summonerspells = this.metadata.summonerspells;
-          this.is_metadata_ready = true;
-          initial_sub.unsubscribe();
+    let self = this; // Using anonymous function is currently the only way to cancel subscription inside .subscribe()
+    this.metadata.requests_finished$
+      .subscribe(function(finished) {
+        if (finished && self.metadata.is_ready) {
+          self.champions = self.metadata.champions;
+          self.items = self.metadata.items;
+          self.summonerspells = self.metadata.summonerspells;
+          self.is_metadata_ready = true;
+          this.unsubscribe();
         }
       });
   }
