@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Response} from "@angular/http";
 import {ApiRoutes} from "../constants/api-routes";
-import {Observable} from "rxjs";
+import {Observable} from "rxjs/Observable";
 import {ApiResponse, ApiResponseError, ApiResponseSuccess} from "../helpers/api-response";
 import {ChampionsContainer} from "../models/dto/containers/champions-container";
 import {ItemsContainer} from "app/models/dto/containers/items-container";
@@ -13,30 +13,28 @@ export class StaticApiService {
   private _champions: ChampionsContainer = null;
   private _champions_request: Observable<ApiResponse<ChampionsContainer, string, any>> = null;
   private _items: ItemsContainer = null;
-  private _items_request: Observable<ApiResponse<ItemsContainer, String, any>> = null;
+  private _items_request: Observable<ApiResponse<ItemsContainer, string, any>> = null;
   private _summonerspells: SummonerspellsContainer = null;
-  private _summonerspells_request: Observable<ApiResponse<SummonerspellsContainer, String, any>> = null;
+  private _summonerspells_request: Observable<ApiResponse<SummonerspellsContainer, string, any>> = null;
 
   constructor(private http: Http) { }
 
   private _cacheAndWrapChampionApiResponse(res: Response): ApiResponse<ChampionsContainer, string, any> {
-    let champion_list = new ChampionsContainer(res.json());
+    const champion_list = new ChampionsContainer(res.json());
     // Cache
     this._champions = champion_list;
     // ..and return
     return new ApiResponseSuccess(champion_list);
   }
   private _cacheAndWrapItemsApiResponse(res: Response): ApiResponse<ItemsContainer, string, any> {
-    let items_json = res.json();
-    let items = new ItemsContainer(items_json);
+    const items = new ItemsContainer(res.json());
     // Cache
     this._items = items;
     // ..and return
     return new ApiResponseSuccess(items);
   }
   private _cacheAndWrapSummonerspellsApiResponse(res: Response): ApiResponse<SummonerspellsContainer, string, any> {
-    let summonerspells_json = res.json();
-    let summonerspells = new SummonerspellsContainer(summonerspells_json);
+    const summonerspells = new SummonerspellsContainer(res.json());
     // Cache
     this._summonerspells = summonerspells;
     // ..and return
@@ -112,19 +110,19 @@ export class StaticApiService {
   public updateChampionDatabase(): Observable<boolean> {
     return this.http.get(ApiRoutes.CHAMPION_REFRESH_URI)
       .map(res => {
-        return res.status == 200;
+        return res.status === 200;
       });
   }
   public updateItemDatabase(): Observable<boolean> {
     return this.http.get(ApiRoutes.ITEM_REFRESH_URI)
       .map(res => {
-        return res.status == 200;
+        return res.status === 200;
       });
   }
   public updateSummonerspellDatabase(): Observable<boolean> {
     return this.http.get(ApiRoutes.SUMMONERSPELL_REFRESH_URI)
       .map(res => {
-        return res.status == 200;
+        return res.status === 200;
       });
   }
 

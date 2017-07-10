@@ -6,6 +6,7 @@ import {ItemsContainer} from "../../models/dto/containers/items-container";
 import {ChampionsContainer} from "../../models/dto/containers/champions-container";
 import {ResType} from "../../enums/api-response-type";
 import {StaticApiService} from "../../services/static-api.service";
+import {GameMetadataService} from "../../services/game-metadata.service";
 
 @Component({
   selector: 'match',
@@ -24,7 +25,7 @@ export class MatchComponent implements OnInit {
   private ally_teammate: Summoner = null;
   private error_message = "";
 
-  constructor(private static_api: StaticApiService) {
+  constructor(private metadata: GameMetadataService) {
   }
 
   private handleGameStartedWithTeammate(ally_summoner: Summoner) {
@@ -42,17 +43,15 @@ export class MatchComponent implements OnInit {
   }
 
   ngOnInit() {
-    Observable.forkJoin([
-      this.static_api.getChampions(),
-      this.static_api.getItems(),
-      this.static_api.getSummonerspells()
-    ])
-      .subscribe(static_api_responses => {
-        if (Object.keys(static_api_responses).every(k => static_api_responses[k].type == ResType.SUCCESS)) {
-          this.champions = static_api_responses[0].data;
-          this.items = static_api_responses[1].data;
-          this.summonerspells = static_api_responses[2].data;
+    this.metadata.load();
+    let initial_sub = this.metadata.requests_finished$
+      .subscribe(finished => {
+        if (finished && this.metadata.is_ready) {
+          this.champions = this.metadata.champions;
+          this.items = this.metadata.items;
+          this.summonerspells = this.metadata.summonerspells;
           this.is_metadata_ready = true;
+          initial_sub.unsubscribe();
         }
       });
   }

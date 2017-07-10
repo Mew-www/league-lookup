@@ -9,6 +9,7 @@ import {SummonerspellsContainer} from "../../models/dto/containers/summonerspell
 import {StaticApiService} from "../../services/static-api.service";
 import {Observable} from "rxjs/Observable";
 import {ResType} from "../../enums/api-response-type";
+import {GameMetadataService} from "../../services/game-metadata.service";
 
 @Component({
   selector: 'profiling',
@@ -28,7 +29,7 @@ export class ProfilingComponent implements OnInit {
   private gettext: Function;
   private current_region;
 
-  constructor(private static_api: StaticApiService,
+  constructor(private metadata: GameMetadataService,
               private translator: TranslatorService,
               private preferencesService: PreferencesService) {
     this.gettext = this.translator.getTranslation;
@@ -51,17 +52,16 @@ export class ProfilingComponent implements OnInit {
           this.selected_summoner = null;
         }
       });
-    Observable.forkJoin([
-      this.static_api.getChampions(),
-      this.static_api.getItems(),
-      this.static_api.getSummonerspells()
-    ])
-      .subscribe(static_api_responses => {
-        if (Object.keys(static_api_responses).every(k => static_api_responses[k].type == ResType.SUCCESS)) {
-          this.champions = static_api_responses[0].data;
-          this.items = static_api_responses[1].data;
-          this.summonerspells = static_api_responses[2].data;
+
+    this.metadata.load();
+    let initial_sub = this.metadata.requests_finished$
+      .subscribe(finished => {
+        if (finished && this.metadata.is_ready) {
+          this.champions = this.metadata.champions;
+          this.items = this.metadata.items;
+          this.summonerspells = this.metadata.summonerspells;
           this.is_metadata_ready = true;
+          initial_sub.unsubscribe();
         }
       });
   }
