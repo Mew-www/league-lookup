@@ -42,11 +42,12 @@ export class AppComponent {
     (<LoggingHttpService>this.logging_http).logger.log('App-root initialized', 'Misc', 'OK');
 
     this.metadata.load();
-    let initial_sub = this.metadata.requests_finished$
-      .subscribe(finished => {
-        if (finished && this.metadata.is_ready) {
-          this.is_metadata_ready = true;
-          initial_sub.unsubscribe();
+    let self = this; // Using anonymous function is currently the only way to cancel subscription inside .subscribe()
+    this.metadata.requests_finished$
+      .subscribe(function(finished) {
+        if (finished && self.metadata.is_ready) {
+          self.is_metadata_ready = true;
+          this.unsubscribe();
         }
       });
   }
