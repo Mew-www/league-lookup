@@ -1,6 +1,8 @@
-# leagueapp-gui-testbed
+# league-lookup
 Front-end of game statistics aggregator app, for videogame "League of Legends".
 
-Features developed "on the go".
+Current features:
+ - to-define after clean-up
 
-This app is merely personal testbed for new features to implement on other (more specific use-case) app(s).
+TODO list:
+ - to-define after clean-up
