@@ -13,6 +13,7 @@ import {ItemsContainer} from "../../../../../../models/dto/containers/items-cont
 import {SummonerspellsContainer} from "../../../../../../models/dto/containers/summonerspells-container";
 import {TranslatorService} from "../../../../../../services/translator.service";
 import {Champion} from "../../../../../../models/dto/champion";
+import {GameMetadataService} from "../../../../../../services/game-metadata.service";
 
 @Component({
   selector: 'previous-games',
@@ -25,11 +26,6 @@ export class PreviousGamesComponent implements OnInit {
   @Input() slice_of_gamehistory: Array<GameReference>; // Required
   @Input() limit: number = null; // Optional; First N games
 
-  // Metadata
-  @Input() champions: ChampionsContainer;
-  @Input() items: ItemsContainer;
-  @Input() summonerspells: SummonerspellsContainer;
-
   // State output
   @Output() loadStart: EventEmitter<boolean> = new EventEmitter();
   @Output() loaded: EventEmitter<boolean> = new EventEmitter();
@@ -39,11 +35,17 @@ export class PreviousGamesComponent implements OnInit {
   private error = '';
   private champion_id_filter = null;
 
+  // Metadata
+  private champions: ChampionsContainer;
+  private items: ItemsContainer;
+  private summonerspells: SummonerspellsContainer;
+
   // Utils
   private gettext: Function;
   private Math = Math;
 
-  constructor(private buffered_requests: RatelimitedRequestsService,
+  constructor(private metadata: GameMetadataService,
+              private buffered_requests: RatelimitedRequestsService,
               private game_api: GameApiService,
               private translator: TranslatorService) {
     this.gettext = this.translator.getTranslation;
@@ -194,6 +196,10 @@ export class PreviousGamesComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Get first loads of static data
+    this.metadata.champions$.first().subscribe(container => this.champions = container);
+    this.metadata.items$.first().subscribe(container => this.items = container);
+    this.metadata.summonerspells$.first().subscribe(container => this.summonerspells = container);
     this.loadPreviousGames();
   }
 

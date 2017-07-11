@@ -14,7 +14,6 @@ export class AppComponent {
 
   private is_setup_ready: boolean = false;
   private is_konami_triggered: boolean = false;
-  private is_metadata_ready: boolean = false;
 
   constructor(private platformLocation: PlatformLocation,
               private router: Router,
@@ -40,15 +39,5 @@ export class AppComponent {
 
   ngOnInit() {
     (<LoggingHttpService>this.logging_http).logger.log('App-root initialized', 'Misc', 'OK');
-
-    this.metadata.load();
-    let self = this; // Using anonymous function is currently the only way to cancel subscription inside .subscribe()
-    this.metadata.requests_finished$
-      .subscribe(function(finished) {
-        if (finished && self.metadata.is_ready) {
-          self.is_metadata_ready = true;
-          this.unsubscribe();
-        }
-      });
   }
 }

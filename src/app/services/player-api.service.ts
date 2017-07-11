@@ -34,7 +34,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(error_res.text));
         }
       });
   }
@@ -57,7 +57,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(error_res.text));
         }
       });
   }
@@ -80,7 +80,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(error_res.text));
         }
       });
   }
@@ -109,7 +109,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(error_res.text));
         }
       });
   }
@@ -138,7 +138,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(error_res.text));
         }
       });
   }
@@ -158,7 +158,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(error_res.text));
         }
       });
   }
@@ -179,7 +179,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(error_res.text));
         }
       });
   }

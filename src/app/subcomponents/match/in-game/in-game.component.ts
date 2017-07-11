@@ -11,6 +11,7 @@ import {CurrentGame} from "../../../models/dto/current-game";
 import {Observable} from "rxjs/Observable";
 import {PlayerApiService} from "../../../services/player-api.service";
 import {GameType} from "../../../enums/game-type";
+import {GameMetadataService} from "../../../services/game-metadata.service";
 
 @Component({
   selector: 'in-game',
@@ -19,22 +20,25 @@ import {GameType} from "../../../enums/game-type";
 })
 export class InGameComponent implements OnInit, OnChanges {
 
-  @Input() champions: ChampionsContainer;
-  @Input() items: ItemsContainer;
-  @Input() summonerspells: SummonerspellsContainer;
   @Input() ally_teammate: Summoner;
   @Output() gameNotFound: EventEmitter<Summoner> = new EventEmitter();
 
   private ongoing_request: Subscription = null;
   private gamemode: GameType = null;
   private enemies: Array<Summoner> = null;
+  private champions: ChampionsContainer;
+  private summonerspells: SummonerspellsContainer;
 
-  constructor(private game_api: GameApiService,
+  constructor(private metadata: GameMetadataService,
+              private game_api: GameApiService,
               private player_api: PlayerApiService,
               private bufferedRequests: RatelimitedRequestsService) {
   }
 
   ngOnInit() {
+    // Get first loads of static data (except items, saved for later / in sub-components)
+    this.metadata.champions$.first().subscribe(container => this.champions = container);
+    this.metadata.summonerspells$.first().subscribe(container => this.summonerspells = container);
   }
 
   ngOnChanges(changes) {

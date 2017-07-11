@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Summoner} from "../../models/dto/summoner";
-import {SummonerspellsContainer} from "../../models/dto/containers/summonerspells-container";
-import {ItemsContainer} from "../../models/dto/containers/items-container";
-import {ChampionsContainer} from "../../models/dto/containers/champions-container";
 import {GameMetadataService} from "../../services/game-metadata.service";
-import {Subscription} from "rxjs/Subscription";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'match',
@@ -13,19 +10,12 @@ import {Subscription} from "rxjs/Subscription";
 })
 export class MatchComponent implements OnInit {
 
-  // Metadata - loaded in this class during initialization
-  private champions: ChampionsContainer;
-  private items: ItemsContainer;
-  private summonerspells: SummonerspellsContainer;
-  private initial_sub: Subscription;
   private is_metadata_ready: boolean = false;
-
   private game_possibly_started: boolean = false;
   private ally_teammate: Summoner = null;
   private error_message = "";
 
-  constructor(private metadata: GameMetadataService) {
-  }
+  constructor(private metadata: GameMetadataService) { }
 
   private handleGameStartedWithTeammate(ally_summoner: Summoner) {
     this.game_possibly_started = true;
@@ -42,17 +32,13 @@ export class MatchComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.metadata.load();
-    let self = this; // Using anonymous function is currently the only way to cancel subscription inside .subscribe()
-    this.metadata.requests_finished$
-      .subscribe(function(finished) {
-        if (finished && self.metadata.is_ready) {
-          self.champions = self.metadata.champions;
-          self.items = self.metadata.items;
-          self.summonerspells = self.metadata.summonerspells;
-          self.is_metadata_ready = true;
-          this.unsubscribe();
-        }
-      });
+    Observable.forkJoin([
+      this.metadata.champions$.first(),
+      this.metadata.items$.first(),
+      this.metadata.summonerspells$.first()
+    ])
+      .subscribe(metadata_containers => {
+        this.is_metadata_ready = true;
+      })
   }
 }
