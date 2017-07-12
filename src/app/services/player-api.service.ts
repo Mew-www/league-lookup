@@ -20,7 +20,7 @@ export class PlayerApiService {
       .map(res => {
         let summoner_json = res.json();
         return new ApiResponseSuccess(new Summoner(region, summoner_json['id'], summoner_json['account'], summoner_json['name'], summoner_json['icon']));
-      }).catch(error_res => {
+      }).catch((error_res: Response) => {
         switch (error_res.status) {
 
           case 404:
@@ -34,7 +34,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }
@@ -43,7 +43,7 @@ export class PlayerApiService {
       .map(res => {
         let summoner_json = res.json();
         return new ApiResponseSuccess(new Summoner(region, summoner_json['id'], summoner_json['account'], summoner_json['name'], summoner_json['icon']));
-      }).catch(error_res => {
+      }).catch((error_res: Response) => {
         switch (error_res.status) {
 
           case 404:
@@ -57,7 +57,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }
@@ -66,7 +66,7 @@ export class PlayerApiService {
       .map(res => {
         let summoner_json = res.json();
         return new ApiResponseSuccess(new Summoner(region, summoner_json['id'], summoner_json['account'], summoner_json['name'], summoner_json['icon']));
-      }).catch(error_res => {
+      }).catch((error_res: Response) => {
         switch (error_res.status) {
 
           case 404:
@@ -80,7 +80,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }
@@ -95,7 +95,7 @@ export class PlayerApiService {
         let sorted_gamerefs = historical_data['matches'].map(match_ref_json => new GameReference(match_ref_json, champions))
           .sort((a, b) => b['timestamp'] - a['timestamp']);
         return new ApiResponseSuccess(sorted_gamerefs);
-      }).catch(error_res => {
+      }).catch((error_res: Response) => {
         switch (error_res.status) {
 
           case 404:
@@ -109,7 +109,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }
@@ -124,7 +124,7 @@ export class PlayerApiService {
         let sorted_gamerefs = historical_data['matches'].map(match_ref_json => new GameReference(match_ref_json, champions))
           .sort((a, b) => b['timestamp'] - a['timestamp']);
         return new ApiResponseSuccess(sorted_gamerefs);
-      }).catch(error_res => {
+      }).catch((error_res: Response) => {
         switch (error_res.status) {
 
           case 404:
@@ -138,7 +138,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }
@@ -147,7 +147,7 @@ export class PlayerApiService {
       .map(res => {
         let masteries_json = res.json();
         return new ApiResponseSuccess(masteries_json);
-      }).catch(error_res => {
+      }).catch((error_res: Response) => {
         switch (error_res.status) {
 
           case 500:
@@ -158,7 +158,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }
@@ -168,7 +168,7 @@ export class PlayerApiService {
         let league_positions_json = res.json();
         let league_positions = league_positions_json.map(position_json => new LeaguePosition(position_json));
         return new ApiResponseSuccess(league_positions);
-      }).catch(error_res => {
+      }).catch((error_res: Response) => {
         switch (error_res.status) {
 
           case 500:
@@ -179,7 +179,7 @@ export class PlayerApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }

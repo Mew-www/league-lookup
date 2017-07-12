@@ -73,7 +73,7 @@ export class GameApiService {
         }
 
       default:
-        return Observable.of(new ApiResponseError(error_res.text()));
+        return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
     }
   }
 
@@ -134,7 +134,7 @@ export class GameApiService {
             }
 
           default:
-            return Observable.of(new ApiResponseError(error_res.text()));
+            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
         }
       });
   }
