@@ -6,7 +6,6 @@ import {ResType} from "../../../../../enums/api-response-type";
 import {GameType} from "../../../../../enums/game-type";
 import {GameReference} from "../../../../../models/dto/game-reference";
 import {GameApiService} from "../../../../../services/game-api.service";
-import {ChampionsContainer} from "../../../../../models/dto/containers/champions-container";
 import {GameMetadataService} from "../../../../../services/game-metadata.service";
 
 @Component({

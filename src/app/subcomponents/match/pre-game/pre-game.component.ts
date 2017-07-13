@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Summoner} from "../../../models/dto/summoner";
-import {GameType} from "../../../enums/game-type";
 import {GameLobby} from "../../../models/dto/game-lobby";
 
 @Component({

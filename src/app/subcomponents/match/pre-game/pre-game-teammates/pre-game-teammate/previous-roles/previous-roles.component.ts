@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {GameType} from "../../../../../../enums/game-type";
 import {Analytics} from "../../../../../../helpers/analytics";
-import {current} from "codelyzer/util/syntaxKind";
 
 @Component({
   selector: 'previous-roles',
