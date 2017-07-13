@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Summoner} from "../../../models/dto/summoner";
 import {GameType} from "../../../enums/game-type";
+import {GameLobby} from "../../../models/dto/game-lobby";
 
 @Component({
   selector: 'pre-game',
@@ -11,17 +12,12 @@ export class PreGameComponent implements OnInit {
 
   @Output() gameStartedWithTeammate: EventEmitter<Summoner> = new EventEmitter();
 
-  private queue_type: GameType = null;
-  private teammates: Array<Summoner> = null;
+  private lobby: GameLobby;
 
   constructor() { }
 
-  private handleChosenQueueType(queue_type) {
-    this.queue_type = queue_type;
-  }
-
-  private handleNewTeammates(teammates) {
-    this.teammates = teammates;
+  private handleNewLobby(game_lobby) {
+    this.lobby = game_lobby;
   }
 
   ngOnInit() {

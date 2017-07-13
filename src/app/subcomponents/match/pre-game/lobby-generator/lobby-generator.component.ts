@@ -8,16 +8,16 @@ import {PreferencesService} from "../../../../services/preferences.service";
 import {TranslatorService} from "../../../../services/translator.service";
 import {Summoner} from "../../../../models/dto/summoner";
 import {GameType} from "../../../../enums/game-type";
+import {GameLobby} from "../../../../models/dto/game-lobby";
 
 @Component({
-  selector: 'pre-game-chatparser',
-  templateUrl: './pre-game-chatparser.component.html',
-  styleUrls: ['./pre-game-chatparser.component.scss']
+  selector: 'lobby-generator',
+  templateUrl: './lobby-generator.component.html',
+  styleUrls: ['./lobby-generator.component.scss']
 })
-export class PreGameChatparserComponent implements OnInit {
+export class LobbyGeneratorComponent implements OnInit {
 
-  @Output() parsedSummoners: EventEmitter<Array<Summoner>> = new EventEmitter();
-  @Output() selectedQueueType: EventEmitter<GameType> = new EventEmitter();
+  @Output() lobby_emitter: EventEmitter<GameLobby> = new EventEmitter();
 
   private current_region = null;
 
@@ -83,8 +83,7 @@ export class PreGameChatparserComponent implements OnInit {
       .subscribe(api_responses => {
         let responses = Object.keys(api_responses).map(k => api_responses[k]);
         if (responses.every(api_res => api_res.type === ResType.SUCCESS)) {
-          this.selectedQueueType.emit(this.selected_queue);
-          this.parsedSummoners.emit(responses.map(api_res => <Summoner>api_res.data));
+          this.lobby_emitter.emit(new GameLobby(responses.map(r=>r.data), this.selected_queue));
           this.minimized = true;
         } else {
           responses.forEach((api_res, i) => {

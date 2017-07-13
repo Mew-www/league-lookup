@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PreGameChatparserComponent } from './pre-game-chatparser.component';
+import { LobbyGeneratorComponent } from './lobby-generator.component';
 
-describe('PreGameChatparserComponent', () => {
-  let component: PreGameChatparserComponent;
-  let fixture: ComponentFixture<PreGameChatparserComponent>;
+describe('LobbyGeneratorComponent', () => {
+  let component: LobbyGeneratorComponent;
+  let fixture: ComponentFixture<LobbyGeneratorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PreGameChatparserComponent ]
+      declarations: [ LobbyGeneratorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PreGameChatparserComponent);
+    fixture = TestBed.createComponent(LobbyGeneratorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

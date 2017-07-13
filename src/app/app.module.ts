@@ -19,7 +19,7 @@ import {RatelimitedRequestsService} from "./services/ratelimited-requests.servic
 import {RouterModule, Routes} from "@angular/router";
 import { MatchComponent } from './subcomponents/match/match.component';
 import { PreGameComponent } from './subcomponents/match/pre-game/pre-game.component';
-import { PreGameChatparserComponent } from './subcomponents/match/pre-game/pre-game-chatparser/pre-game-chatparser.component';
+import { LobbyGeneratorComponent } from './subcomponents/match/pre-game/lobby-generator/lobby-generator.component';
 import { PreGameTeammatesComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammates.component';
 import {DragulaModule} from "ng2-dragula";
 import { PreGameTeammateComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammate/pre-game-teammate.component';
@@ -54,7 +54,7 @@ export function loggedHttpFactory (xhr_backend: XHRBackend, request_options: Req
     StringifyGameTypePipe,
     MatchComponent,
     PreGameComponent,
-    PreGameChatparserComponent,
+    LobbyGeneratorComponent,
     PreGameTeammatesComponent,
     PreGameTeammateComponent,
     TeammateLeaguePositionComponent,

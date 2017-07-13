@@ -92,7 +92,6 @@ export class PreGameTeammateComponent implements OnInit {
                 this.errors.push("Unsupported queue type. (This shouldn't be possible. UI y u let this happen?)");
                 this.current_queue_past_3_weeks = [];
               }
-
             }
           });
       });

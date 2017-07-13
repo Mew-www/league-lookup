@@ -1,12 +1,11 @@
-<pre-game-chatparser
-    (selectedQueueType)="handleChosenQueueType($event)"
-    (parsedSummoners)="handleNewTeammates($event)">
-</pre-game-chatparser>
+<lobby-generator
+    (lobby_emitter)="handleNewLobby($event)">
+</lobby-generator>
 
 <pre-game-teammates
-    *ngIf="queue_type !== null && teammates !== null"
-    [queue]="queue_type"
-    [teammates]="teammates"
+    *ngIf="lobby"
+    [queue]="lobby.game_type"
+    [teammates]="lobby.teammates"
 
     (gameStartedWithTeammate)="gameStartedWithTeammate.emit($event)">
 </pre-game-teammates>
