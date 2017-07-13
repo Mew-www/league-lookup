@@ -26,13 +26,29 @@
     </label>
     <div class="ChatParser__optional-inputs">
       <label class="ChatParser__self">
-        <span class="ChatParser__self-helper-text">1b) <span class="OptionalNotice">&lt;optional&gt;</span> Your own in-game name here</span>
-        <span class="ChatParser__self-clarification-text">(Why: No time spent downloading your own match history.)</span>
+        <span class="ChatParser__self-helper-text">
+          1b)
+          <span class="OptionalNotice">&lt;optional&gt;</span>
+          Your own in-game name here
+          <span
+              class="ChatParser__self-clarification-icon fa fa-question-circle"
+              aria-hidden="true"
+              title="So no time spent downloading your own match history."
+          ></span>
+        </span>
         <input class="ChatParser__self-paste-input" type="text" [(ngModel)]="user_itself" placeholder="Cueball"/>
       </label>
       <label class="ChatParser__duo-queuer">
-        <span class="ChatParser__duo-queuer-helper-text">1c) <span class="OptionalNotice">&lt;optional&gt;</span> Partner's in-game name here</span>
-        <span class="ChatParser__duo-queuer-clarification-text">(So no time spent downloading her/his match history.)</span>
+        <span class="ChatParser__duo-queuer-helper-text">
+          1c)
+          <span class="OptionalNotice">&lt;optional&gt;</span>
+          Partner's in-game name here
+          <span
+              class="ChatParser__self-clarification-icon fa fa-question-circle"
+              aria-hidden="true"
+              title="So no time spent downloading her/his match history."
+          ></span>
+        </span>
         <input class="ChatParser__duo-queuer-paste-input" type="text" [(ngModel)]="duoqueue_partner" placeholder="Megan"/>
       </label>
     </div>

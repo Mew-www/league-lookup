@@ -1,3 +1,6 @@
+//@import '../../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../../../../../../node_modules/font-awesome/css/font-awesome.min.css';
+
 %clearfix { &:after { content: " "; display: table; clear: both; } }
 
 .ChatParser {
@@ -40,6 +43,7 @@
   &__optional-inputs {
     float: left;
     display: table;
+    margin-top: 1.8em;
   }
   .OptionalNotice {
     font-size: 12px;
@@ -52,10 +56,8 @@
       display: block;
       font-family: Roboto, 'sans-serif';
     }
-    &-clarification-text {
-      display: block;
-      font-family: Roboto, 'sans-serif';
-      font-size: 14px;
+    &-clarification-icon {
+      cursor: help;
       color: darkmagenta;
     }
     &-paste-input {
