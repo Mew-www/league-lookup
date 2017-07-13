@@ -24,7 +24,12 @@ export class LoggingHttpService extends Http {
         return res;
       })
       .catch(error_res => {
-        this.logger.log(url_string, 'HTTP', error_res.json()['status'].toString());
+        // Add check in case if response isn't json
+        try {
+          this.logger.log(url_string, 'HTTP', error_res.json()['status'].toString());
+        } catch(e) {
+          this.logger.log(url_string, 'HTTP', error_res.status.toString());
+        }
         return Observable.throw(error_res);
       });
 
