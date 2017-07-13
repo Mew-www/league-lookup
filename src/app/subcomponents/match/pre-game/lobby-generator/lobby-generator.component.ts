@@ -6,7 +6,6 @@ import {PlayerApiService} from "../../../../services/player-api.service";
 import {RatelimitedRequestsService} from "../../../../services/ratelimited-requests.service";
 import {PreferencesService} from "../../../../services/preferences.service";
 import {TranslatorService} from "../../../../services/translator.service";
-import {Summoner} from "../../../../models/dto/summoner";
 import {GameType} from "../../../../enums/game-type";
 import {GameLobby} from "../../../../models/dto/game-lobby";
 
