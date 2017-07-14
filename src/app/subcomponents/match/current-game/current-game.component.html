@@ -2,7 +2,7 @@
   <pre-game-teammate
       *ngFor="let s of enemies"
       [summoner]="s"
-      [queueing_for]="gamemode"
+      [queueing_for]="current_game.game_type"
       [display_summoner_icon]="true"
       [use_minified_components]="false"
 
