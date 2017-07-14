@@ -23,6 +23,8 @@ export class LobbyGeneratorComponent implements OnInit {
   private chat_content = "";
   private user_itself = "";
   private duoqueue_partner = "";
+  private remember_self = false;
+  private remember_partner = false;
   private selected_queue: GameType = null;
   private errors = [];
   private subscription: Subscription = null;
@@ -37,6 +39,34 @@ export class LobbyGeneratorComponent implements OnInit {
               private preferencesService: PreferencesService,
               private translator: TranslatorService) {
     this.gettext = translator.getTranslation;
+  }
+
+  private updateSelfOrNoop() {
+    if (this.remember_self) {
+      this.preferencesService.setPref('lobby_self', this.user_itself);
+    }
+  }
+
+  private updateOrForgetSelf() {
+    if (this.remember_self) {
+      this.preferencesService.setPref('lobby_self', this.user_itself);
+    } else {
+      this.preferencesService.clearPref('lobby_self');
+    }
+  }
+
+  private updatePartnerOrNoop() {
+    if (this.remember_partner) {
+      this.preferencesService.setPref('lobby_partner', this.duoqueue_partner);
+    }
+  }
+
+  private updateOrForgetPartner() {
+    if (this.remember_partner) {
+      this.preferencesService.setPref('lobby_partner', this.duoqueue_partner);
+    } else {
+      this.preferencesService.clearPref('lobby_partner');
+    }
   }
 
   private parseChat() {
@@ -98,6 +128,18 @@ export class LobbyGeneratorComponent implements OnInit {
 
   ngOnInit() {
     this.current_region = this.preferencesService['region']; // Expected to be set before init (see: Setup -component)
+
+    let saved_lobby_self = this.preferencesService.getPref('lobby_self'); // May be an empty string, check for null
+    if (saved_lobby_self !== null) {
+      this.user_itself = saved_lobby_self;
+      this.remember_self = true;
+    }
+    let saved_lobby_partner = this.preferencesService.getPref('lobby_partner'); // May be an empty string, check for null
+    if (saved_lobby_partner !== null) {
+      this.duoqueue_partner = saved_lobby_partner;
+      this.remember_partner = true;
+    }
+
     this.preferencesService.preferences$
       .subscribe(new_prefs => {
         if (new_prefs.hasOwnProperty('region') && new_prefs.region !== this.current_region) {

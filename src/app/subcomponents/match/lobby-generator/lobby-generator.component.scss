@@ -49,6 +49,14 @@
     font-size: 12px;
     vertical-align: top;
   }
+  .RememberCheck {
+    position: relative;
+    top: 1px;
+  }
+  .RememberLabel {
+    position: relative;
+    top: -1px;
+  }
   &__self {
     display: table;
     margin-bottom: 10px;
