@@ -119,7 +119,7 @@ export class GameApiService {
     return this.http.get(ApiRoutes.PLAYER_CURRENT_GAME_URI(summoner.region, summoner.id))
       .map(res => {
         let current_game_json = res.json();
-        return new ApiResponseSuccess(new CurrentGame(current_game_json, summoner, champions, summonerspells));
+        return new ApiResponseSuccess(new CurrentGame(summoner.region, current_game_json, summoner, champions, summonerspells));
       }).catch(error_res => {
         switch (error_res.status) {
 

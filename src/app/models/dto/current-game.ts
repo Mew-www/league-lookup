@@ -6,6 +6,7 @@ import {SummonerspellsContainer} from "./containers/summonerspells-container";
 
 export class CurrentGame {
 
+  public readonly region;
   public readonly game_id;
   public readonly game_type: GameType;
   public readonly game_start_time: Date;
@@ -15,9 +16,10 @@ export class CurrentGame {
   public readonly looked_up_summoner;
 
   // https://developer.riotgames.com/api-methods/#spectator-v3/GET_getCurrentGameInfoBySummoner
-  constructor(currentgame_json, looked_up_summoner,
+  constructor(region, currentgame_json, looked_up_summoner,
               champions: ChampionsContainer, summonerspells: SummonerspellsContainer) {
 
+    this.region = region;
     this.game_id = currentgame_json.gameId;
     this.game_type = (function (queue_id) {
       switch (queue_id) {

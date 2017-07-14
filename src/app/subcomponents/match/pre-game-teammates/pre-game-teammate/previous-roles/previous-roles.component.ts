@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GameType} from "../../../../../../enums/game-type";
-import {Analytics} from "../../../../../../helpers/analytics";
+import {GameType} from "../../../../../enums/game-type";
+import {Analytics} from "../../../../../helpers/analytics";
 
 @Component({
   selector: 'previous-roles',

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Summoner} from "../../models/dto/summoner";
 import {GameMetadataService} from "../../services/game-metadata.service";
 import {Observable} from "rxjs/Observable";
+import {GameLobby} from "../../models/dto/game-lobby";
+import {CurrentGame} from "../../models/dto/current-game";
 
 @Component({
   selector: 'match',
@@ -11,24 +12,19 @@ import {Observable} from "rxjs/Observable";
 export class MatchComponent implements OnInit {
 
   private is_metadata_ready: boolean = false;
-  private game_possibly_started: boolean = false;
-  private ally_teammate: Summoner = null;
-  private error_message = "";
+  private lobby: GameLobby = null;
+  private current_game: CurrentGame = null;
 
   constructor(private metadata: GameMetadataService) { }
 
-  private handleGameStartedWithTeammate(ally_summoner: Summoner) {
-    this.game_possibly_started = true;
-    this.ally_teammate = ally_summoner;
+  private handleNewLobby(new_lobby) {
+    this.lobby = new_lobby;
+    // Reset the current_game if a new lobby is given
+    this.current_game = null;
   }
 
-  private handleGameNotFound(invalid_ally: Summoner) {
-    if (invalid_ally === null) {
-      this.error_message = "An error happened trying to request current match. Try again.";
-    } else {
-      this.error_message = `Teammate ${invalid_ally.current_name} is not in game yet. Try again later.`;
-    }
-    this.game_possibly_started = false;
+  private handleNewCurrentGame(new_current_game) {
+    this.current_game = new_current_game;
   }
 
   ngOnInit() {

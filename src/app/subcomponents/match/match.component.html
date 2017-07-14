@@ -1,10 +1,16 @@
-<pre-game
-    *ngIf="is_metadata_ready"
-    (gameStartedWithTeammate)="handleGameStartedWithTeammate($event)">
-</pre-game>
-<p *ngIf="error_message.length > 0">{{error_message}}</p>
-<in-game
-    *ngIf="game_possibly_started"
-    [ally_teammate]="ally_teammate"
-    (gameNotFound)="handleGameNotFound($event)">
-</in-game>
+<lobby-generator
+    (lobby_emitter)="handleNewLobby($event)">
+</lobby-generator>
+
+<pre-game-teammates
+    *ngIf="lobby && !current_game"
+    [queue]="lobby.game_type"
+    [teammates]="lobby.teammates"
+
+    (current_game_emitter)="handleNewCurrentGame($event)">
+</pre-game-teammates>
+
+<current-game
+    *ngIf="current_game"
+    [current_game]="current_game">
+</current-game>

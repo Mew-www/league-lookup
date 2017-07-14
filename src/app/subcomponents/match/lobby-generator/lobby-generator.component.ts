@@ -1,13 +1,13 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {ResType} from "../../../../enums/api-response-type";
+import {ResType} from "../../../enums/api-response-type";
 import {Subscription} from "rxjs/Subscription";
-import {PlayerApiService} from "../../../../services/player-api.service";
-import {RatelimitedRequestsService} from "../../../../services/ratelimited-requests.service";
-import {PreferencesService} from "../../../../services/preferences.service";
-import {TranslatorService} from "../../../../services/translator.service";
-import {GameType} from "../../../../enums/game-type";
-import {GameLobby} from "../../../../models/dto/game-lobby";
+import {PlayerApiService} from "../../../services/player-api.service";
+import {RatelimitedRequestsService} from "../../../services/ratelimited-requests.service";
+import {PreferencesService} from "../../../services/preferences.service";
+import {TranslatorService} from "../../../services/translator.service";
+import {GameType} from "../../../enums/game-type";
+import {GameLobby} from "../../../models/dto/game-lobby";
 
 @Component({
   selector: 'lobby-generator',

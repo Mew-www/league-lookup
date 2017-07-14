@@ -26,6 +26,7 @@
     </pre-game-teammate>
   </div>
   <div>
-    <button (click)="gameStartedWithTeammate.emit(teammates[0])">Match started</button>
+    <button (click)="seek_current_game()">Match started</button>
+    <p *ngIf="error_message">{{error_message}}</p>
   </div>
 </div>

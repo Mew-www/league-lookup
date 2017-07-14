@@ -1,12 +1,12 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Summoner} from "../../../../../models/dto/summoner";
-import {PlayerApiService} from "../../../../../services/player-api.service";
-import {RatelimitedRequestsService} from "../../../../../services/ratelimited-requests.service";
-import {ResType} from "../../../../../enums/api-response-type";
-import {GameType} from "../../../../../enums/game-type";
-import {GameReference} from "../../../../../models/dto/game-reference";
-import {GameApiService} from "../../../../../services/game-api.service";
-import {GameMetadataService} from "../../../../../services/game-metadata.service";
+import {Summoner} from "../../../../models/dto/summoner";
+import {PlayerApiService} from "../../../../services/player-api.service";
+import {RatelimitedRequestsService} from "../../../../services/ratelimited-requests.service";
+import {ResType} from "../../../../enums/api-response-type";
+import {GameType} from "../../../../enums/game-type";
+import {GameReference} from "../../../../models/dto/game-reference";
+import {GameApiService} from "../../../../services/game-api.service";
+import {GameMetadataService} from "../../../../services/game-metadata.service";
 
 @Component({
   selector: 'pre-game-teammate',

@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {LeaguePosition} from "../../../../../../models/dto/league-position";
-import {RankedTier} from "../../../../../../enums/ranked-tier";
-import {GameType} from "../../../../../../enums/game-type";
-import {Settings} from "../../../../../../constants/settings";
-import {Summoner} from "../../../../../../models/dto/summoner";
-import {RatelimitedRequestsService} from "../../../../../../services/ratelimited-requests.service";
-import {PlayerApiService} from "../../../../../../services/player-api.service";
-import {ResType} from "../../../../../../enums/api-response-type";
-import {TranslatorService} from "../../../../../../services/translator.service";
+import {LeaguePosition} from "../../../../../models/dto/league-position";
+import {RankedTier} from "../../../../../enums/ranked-tier";
+import {GameType} from "../../../../../enums/game-type";
+import {Settings} from "../../../../../constants/settings";
+import {Summoner} from "../../../../../models/dto/summoner";
+import {RatelimitedRequestsService} from "../../../../../services/ratelimited-requests.service";
+import {PlayerApiService} from "../../../../../services/player-api.service";
+import {ResType} from "../../../../../enums/api-response-type";
+import {TranslatorService} from "../../../../../services/translator.service";
 
 @Component({
   selector: 'teammate-league-position',

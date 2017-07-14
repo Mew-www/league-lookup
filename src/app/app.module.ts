@@ -18,19 +18,18 @@ import { SummonerComponent } from './genericcomponents/summoner/summoner.compone
 import {RatelimitedRequestsService} from "./services/ratelimited-requests.service";
 import {RouterModule, Routes} from "@angular/router";
 import { MatchComponent } from './subcomponents/match/match.component';
-import { PreGameComponent } from './subcomponents/match/pre-game/pre-game.component';
-import { LobbyGeneratorComponent } from './subcomponents/match/pre-game/lobby-generator/lobby-generator.component';
-import { PreGameTeammatesComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammates.component';
+import { LobbyGeneratorComponent } from './subcomponents/match/lobby-generator/lobby-generator.component';
+import { PreGameTeammatesComponent } from './subcomponents/match/pre-game-teammates/pre-game-teammates.component';
 import {DragulaModule} from "ng2-dragula";
-import { PreGameTeammateComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammate/pre-game-teammate.component';
-import { TeammateLeaguePositionComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammate/teammate-league-position/teammate-league-position.component';
-import { RoleSelectorComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammate/teammate-role-selector/role-selector.component';
+import { PreGameTeammateComponent } from './subcomponents/match/pre-game-teammates/pre-game-teammate/pre-game-teammate.component';
+import { TeammateLeaguePositionComponent } from './subcomponents/match/pre-game-teammates/pre-game-teammate/teammate-league-position/teammate-league-position.component';
+import { RoleSelectorComponent } from './subcomponents/match/pre-game-teammates/pre-game-teammate/teammate-role-selector/role-selector.component';
 import { PreferredLanesComponent } from './genericcomponents/preferred-lanes/preferred-lanes.component';
-import { PreviousGamesComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammate/previous-games/previous-games.component';
+import { PreviousGamesComponent } from './subcomponents/match/pre-game-teammates/pre-game-teammate/previous-games/previous-games.component';
 import { SquarebraceTitledContainerComponent } from './genericcomponents/squarebrace-titled-container/squarebrace-titled-container.component';
 import {CanActivateViaRegionGuard} from "./guards/can-activate-via-region.guard";
-import { PreviousRolesComponent } from './subcomponents/match/pre-game/pre-game-teammates/pre-game-teammate/previous-roles/previous-roles.component';
-import { InGameComponent } from './subcomponents/match/in-game/in-game.component';
+import { PreviousRolesComponent } from './subcomponents/match/pre-game-teammates/pre-game-teammate/previous-roles/previous-roles.component';
+import { CurrentGameComponent } from './subcomponents/match/current-game/current-game.component';
 import {GameMetadataService} from "./services/game-metadata.service";
 import {LoggingHttpService} from "./services/logging-http.service";
 import { DebugComponent } from './subcomponents/debug/debug.component';
@@ -53,7 +52,6 @@ export function loggedHttpFactory (xhr_backend: XHRBackend, request_options: Req
     SummonerComponent,
     StringifyGameTypePipe,
     MatchComponent,
-    PreGameComponent,
     LobbyGeneratorComponent,
     PreGameTeammatesComponent,
     PreGameTeammateComponent,
@@ -63,7 +61,7 @@ export function loggedHttpFactory (xhr_backend: XHRBackend, request_options: Req
     PreviousGamesComponent,
     SquarebraceTitledContainerComponent,
     PreviousRolesComponent,
-    InGameComponent,
+    CurrentGameComponent,
     DebugComponent
   ],
   imports: [
