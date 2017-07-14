@@ -16,8 +16,6 @@ import {GameLobby} from "../../../models/dto/game-lobby";
 })
 export class LobbyGeneratorComponent implements OnInit {
 
-  @Output() lobby_emitter: EventEmitter<GameLobby> = new EventEmitter();
-
   private current_region = null;
 
   private chat_content = "";
@@ -33,6 +31,8 @@ export class LobbyGeneratorComponent implements OnInit {
 
   private gettext: Function;
   private GameType = GameType;
+
+  @Output() lobby_emitter: EventEmitter<GameLobby> = new EventEmitter();
 
   constructor(private player_api: PlayerApiService,
               private bufferedRequests: RatelimitedRequestsService,
