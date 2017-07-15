@@ -19,19 +19,19 @@ import {GameMetadataService} from "../../../services/game-metadata.service";
 })
 export class CurrentGameFinderComponent implements OnInit {
 
+  @Output() current_game_emitter: EventEmitter<CurrentGame> = new EventEmitter();
+
   private current_region = null;
 
   private target = "";
   private error_message ="";
   private subscription: Subscription = null;
 
-  private minimized = false;
-
   private champions: ChampionsContainer;
   private summonerspells: SummonerspellsContainer;
   private gettext: Function;
 
-  @Output() current_game_emitter: EventEmitter<CurrentGame> = new EventEmitter();
+  public minimized = false;
 
   constructor(private metadata: GameMetadataService,
               private player_api: PlayerApiService,
@@ -43,6 +43,8 @@ export class CurrentGameFinderComponent implements OnInit {
   }
 
   private findGame() {
+    this.error_message = "";
+
     this.subscription = this.bufferedRequests.buffer(() => {
       return this.player_api.getSummonerByName(this.current_region, this.target);
     })
@@ -59,7 +61,7 @@ export class CurrentGameFinderComponent implements OnInit {
           })
             .subscribe((game_api_res) => {
               if (game_api_res.type === ResType.NOT_FOUND) {
-                this.error_message = `Teammate ${target_summoner.current_name} is not currently in game. Try again later.`;
+                this.error_message = `${target_summoner.current_name} is not currently in game. Try again later.`;
               } else if (game_api_res.type === ResType.ERROR) {
                 this.error_message = "An error happened trying to request current match. Try again.";
               } else if (game_api_res.type === ResType.SUCCESS) {

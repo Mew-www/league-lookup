@@ -29,10 +29,10 @@ export class LobbyGeneratorComponent implements OnInit {
   private errors = [];
   private subscription: Subscription = null;
 
-  private minimized = false;
-
   private gettext: Function;
   private GameType = GameType;
+
+  public minimized = false;
 
   constructor(private player_api: PlayerApiService,
               private bufferedRequests: RatelimitedRequestsService,
@@ -129,7 +129,6 @@ export class LobbyGeneratorComponent implements OnInit {
         let responses = Object.keys(api_responses).map(k => api_responses[k]);
         if (responses.every(api_res => api_res.type === ResType.SUCCESS)) {
           this.lobby_emitter.emit(new GameLobby(responses.map(r=>r.data), this.selected_queue));
-          this.minimized = true;
         } else {
           responses.forEach((api_res, i) => {
             if (api_res.type === ResType.NOT_FOUND) {
