@@ -23,6 +23,13 @@
     }
   }
 
+  &__controls {
+    padding: 3px;
+    border: 1px solid slategray;
+    box-shadow: 2px 2px 4px 0 #c9c9c9;
+    margin-top: 3px;
+  }
+
   // #1 Float begin
   &__primary-controls {
     @extend %clearfix;

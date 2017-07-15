@@ -1,12 +1,25 @@
 %clearfix { &:after { content: " "; display: table; clear: both; } }
 
-.Generators {
+.Finders {
   @extend %clearfix;
-  &__generator {
+  &__container {
     float: left;
-    margin-left: 30px;
-    &:first-child {
-      margin-left: 0;
-    }
+  }
+}
+
+.InGameFinder {
+  @extend %clearfix;
+  &__description {
+    float: left;
+    margin-left: 42px;
+    margin-right: 42px;
+    font-family: Roboto, 'sans-serif';
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    top: -0.34em;
+  }
+  &__control {
+    float: left;
   }
 }

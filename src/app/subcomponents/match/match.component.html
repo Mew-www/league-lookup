@@ -1,12 +1,18 @@
-<div class="Generators">
+<div class="Finders">
   <lobby-generator
-      class="Generators__generator"
+      class="Finders__container"
       (lobby_emitter)="handleNewLobby($event)">
   </lobby-generator>
-  <current-game-finder
-      class="Generators__generator"
-      (current_game_emitter)="handleNewCurrentGame($event)">
-  </current-game-finder>
+  <div class="Finders__container InGameFinder">
+    <div class="InGameFinder__description">
+      OR<br/>
+      if in game
+    </div>
+    <current-game-finder
+        class="InGameFinder__control"
+        (current_game_emitter)="handleNewCurrentGame($event)">
+    </current-game-finder>
+  </div>
 </div>
 
 <pre-game-teammates

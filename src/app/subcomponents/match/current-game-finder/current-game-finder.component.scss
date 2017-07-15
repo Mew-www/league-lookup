@@ -22,6 +22,10 @@
 
   &__controls {
     @extend %clearfix;
+    padding: 3px;
+    border: 1px solid slategray;
+    box-shadow: 2px 2px 4px 0 #c9c9c9;
+    margin-top: 3px;
   }
   &__target {
     display: table;
@@ -32,13 +36,16 @@
     }
     &-paste-input {
       font-family: monospace, serif;
+      display: table;
+      margin: 0 auto;
+      margin-top: 6px;
     }
   }
   &__find-btn {
     padding: 6px 8px;
     font-family: Roboto, 'sans-serif';
-    margin-right: 20px;
-    margin-left: 20px;
+    display: table;
+    margin: 0 auto;
   }
 }
 
