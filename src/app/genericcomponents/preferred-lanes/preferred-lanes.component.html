@@ -20,6 +20,6 @@
       *ngIf="check_autofill && chosen_lane && preferred_lanes.map(mapToLaneName).indexOf(chosen_lane) === -1"
       class="PreferredLanes__autofill-infotext"
   >
-    {{gettext('unlucky_autofill')}}
+    {{chosen_lane.toString()}}?
   </span>
 </span>
