@@ -1,0 +1,12 @@
+%clearfix { &:after { content: " "; display: table; clear: both; } }
+
+.Generators {
+  @extend %clearfix;
+  &__generator {
+    float: left;
+    margin-left: 30px;
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}

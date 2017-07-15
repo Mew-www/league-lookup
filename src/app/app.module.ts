@@ -34,6 +34,7 @@ import {GameMetadataService} from "./services/game-metadata.service";
 import {LoggingHttpService} from "./services/logging-http.service";
 import { DebugComponent } from './subcomponents/debug/debug.component';
 import {LogHistoryService} from "./services/log-history.service";
+import { CurrentGameFinderComponent } from './subcomponents/match/current-game-finder/current-game-finder.component';
 
 const routes: Routes = [
   {'path': "debug", component: DebugComponent},
@@ -62,7 +63,8 @@ export function loggedHttpFactory (xhr_backend: XHRBackend, request_options: Req
     SquarebraceTitledContainerComponent,
     PreviousRolesComponent,
     CurrentGameComponent,
-    DebugComponent
+    DebugComponent,
+    CurrentGameFinderComponent
   ],
   imports: [
     DragulaModule,

@@ -1,0 +1,55 @@
+%clearfix { &:after { content: " "; display: table; clear: both; } }
+
+.GameFinder {
+  display: inline-block;
+
+  &__header {
+    padding: 2px 4px;
+    margin: 0;
+    margin-top: 4px;
+    margin-bottom: 2px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.33+0,0+100; */
+    background: -moz-linear-gradient(left, rgba(0,0,0,0.33) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(0,0,0,0.33) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(0,0,0,0.33) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    &-text {
+      font-family: "Roboto Mono", monospace;
+    }
+    &-toggle-btn {
+
+    }
+  }
+
+  &__controls {
+    @extend %clearfix;
+  }
+  &__target {
+    display: table;
+    margin-bottom: 10px;
+    &-helper-text {
+      display: block;
+      font-family: Roboto, 'sans-serif';
+    }
+    &-paste-input {
+      font-family: monospace, serif;
+    }
+  }
+  &__find-btn {
+    padding: 6px 8px;
+    font-family: Roboto, 'sans-serif';
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
+
+.ErrorsContainer {
+  display: inline-block;
+
+  &__error {
+    margin: 0;
+    padding: 0;
+    display: table;
+    color: red;
+    font-style: italic;
+  }
+}

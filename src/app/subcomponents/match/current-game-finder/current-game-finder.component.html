@@ -1,0 +1,28 @@
+<div class="GameFinder">
+  <p class="GameFinder__header">
+    <span class="GameFinder__header-text">ONGOING GAME -LOOKUP</span>
+    <button class="GameFinder__header-toggle-btn" (click)="minimized = !minimized">
+      {{gettext(minimized ? 'show_more' : 'show_less')}}
+    </button>
+  </p>
+
+  <div *ngIf="!minimized" class="GameFinder__controls">
+    <label class="GameFinder__target">
+      <span class="GameFinder__target-helper-text">
+        Target (who is currently in a match) in-game name here
+      </span>
+      <input class="GameFinder__target-paste-input" type="text" [(ngModel)]="target" placeholder="Feeder"/>
+    </label>
+    <button
+        class="GameFinder__find-btn"
+        (click)="findGame()"
+        [disabled]="target.length === 0 || this.subscription !== null && !this.subscription.closed"
+    >
+      {{error_message.length === 0 ? "Start" : "Try again"}}
+    </button>
+  </div>
+</div>
+<br/>
+<div class="ErrorsContainer">
+  <p *ngIf="error_message.length > 0" class="ErrorsContainer__error">{{error_message}}</p>
+</div>

@@ -16,6 +16,8 @@ import {GameLobby} from "../../../models/dto/game-lobby";
 })
 export class LobbyGeneratorComponent implements OnInit {
 
+  @Output() lobby_emitter: EventEmitter<GameLobby> = new EventEmitter();
+
   private current_region = null;
 
   private chat_content = "";
@@ -31,8 +33,6 @@ export class LobbyGeneratorComponent implements OnInit {
 
   private gettext: Function;
   private GameType = GameType;
-
-  @Output() lobby_emitter: EventEmitter<GameLobby> = new EventEmitter();
 
   constructor(private player_api: PlayerApiService,
               private bufferedRequests: RatelimitedRequestsService,
@@ -67,6 +67,22 @@ export class LobbyGeneratorComponent implements OnInit {
     } else {
       this.preferencesService.clearPref('lobby_partner');
     }
+  }
+
+  private rememberSelf() {
+    this.preferencesService.setPref('lobby_self', this.user_itself);
+  }
+
+  private rememberPartner() {
+    this.preferencesService.setPref('lobby_partner', this.duoqueue_partner);
+  }
+
+  private forgetSelf() {
+    this.preferencesService.clearPref('lobby_self');
+  }
+
+  private forgetPartner() {
+    this.preferencesService.clearPref('lobby_partner');
   }
 
   private parseChat() {

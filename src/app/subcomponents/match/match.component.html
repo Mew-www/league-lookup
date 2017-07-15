@@ -1,6 +1,13 @@
-<lobby-generator
-    (lobby_emitter)="handleNewLobby($event)">
-</lobby-generator>
+<div class="Generators">
+  <lobby-generator
+      class="Generators__generator"
+      (lobby_emitter)="handleNewLobby($event)">
+  </lobby-generator>
+  <current-game-finder
+      class="Generators__generator"
+      (current_game_emitter)="handleNewCurrentGame($event)">
+  </current-game-finder>
+</div>
 
 <pre-game-teammates
     *ngIf="lobby && !current_game"
