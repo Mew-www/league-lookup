@@ -14,6 +14,7 @@ import {SummonerspellsContainer} from "../../../../../models/dto/containers/summ
 import {TranslatorService} from "../../../../../services/translator.service";
 import {Champion} from "../../../../../models/dto/champion";
 import {GameMetadataService} from "../../../../../services/game-metadata.service";
+import {PreferencesService} from "../../../../../services/preferences.service";
 
 @Component({
   selector: 'previous-games',
@@ -30,6 +31,7 @@ export class PreviousGamesComponent implements OnInit {
   @Output() loadStart: EventEmitter<boolean> = new EventEmitter();
   @Output() loaded: EventEmitter<boolean> = new EventEmitter();
 
+  private current_region;
   private ongoing_request: Subscription = null;
   private days_ago_collections = null;
   private error = '';
@@ -44,7 +46,8 @@ export class PreviousGamesComponent implements OnInit {
   private gettext: Function;
   private Math = Math;
 
-  constructor(private metadata: GameMetadataService,
+  constructor(private preferences_service: PreferencesService,
+              private metadata: GameMetadataService,
               private buffered_requests: RatelimitedRequestsService,
               private game_api: GameApiService,
               private translator: TranslatorService) {
@@ -148,6 +151,7 @@ export class PreviousGamesComponent implements OnInit {
             game_details.push(new GameRecordPersonalised(
               (<GameRecord> game_api_responses[i].data).raw_origin,
               this.summoner,
+              gamereferences[i].chosen_champion.id,
               this.champions,
               this.items,
               this.summonerspells
@@ -172,6 +176,7 @@ export class PreviousGamesComponent implements OnInit {
             // Parse match itself
             let player_itself = g.teams.ally.players.find(p => p.is_the_target);
             collection.contents.push({
+              region: g.region,
               player_as_participant: player_itself,
               role: gamereferences[i].presumed_lane,
               victory: g.teams.ally.stats.isWinningTeam,
@@ -196,6 +201,8 @@ export class PreviousGamesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.current_region = this.preferences_service.getPref('region'); // Expected to be set before init (see: Setup -component)
+
     // Get first loads of static data
     this.metadata.champions$.first().subscribe(container => this.champions = container);
     this.metadata.items$.first().subscribe(container => this.items = container);

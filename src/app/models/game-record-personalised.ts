@@ -9,6 +9,7 @@ import {GameTimeline} from "./dto/game-timeline";
 export class GameRecordPersonalised extends GameRecord {
 
   public readonly game_id: Number;
+  public readonly region: string;
   public readonly match_start_time: Date;
   public readonly match_duration_seconds: Number;
   public readonly league_version: string;
@@ -16,13 +17,13 @@ export class GameRecordPersonalised extends GameRecord {
   public readonly teams;
   public timeline: GameTimeline = null;
 
-  constructor(game_json, looked_up_summoner: Summoner,
+  constructor(game_json, looked_up_summoner: Summoner, looked_up_summoners_champion_id,
               champions: ChampionsContainer, items: ItemsContainer, summonerspells: SummonerspellsContainer) {
 
     super(game_json);
 
     // https://developer.riotgames.com/api-methods/#match-v3/GET_getMatch
-    function parse_teamdata(ally_team_id, get_ally_data: boolean, player_map) {
+    function parse_teamdata(ally_team_id, get_ally_data: boolean, player_map, self_participant_id) {
       return {
         stats: game_json.teams
           .filter(t => (get_ally_data ? t.teamId === ally_team_id : t.teamId !== ally_team_id))
@@ -64,7 +65,7 @@ export class GameRecordPersonalised extends GameRecord {
             let pstats = p.stats;
             return {
               summoner: player_map[p.participantId],
-              is_the_target: player_map[p.participantId].id === looked_up_summoner.id,
+              is_the_target: p.participantId === self_participant_id,
               border: p.highestAchievedSeasonTier,
               champion: champions.getChampionById(p.championId),
               summoner_spell1: summonerspells.getSummonerspellById(p.spell1Id),
@@ -155,26 +156,58 @@ export class GameRecordPersonalised extends GameRecord {
       };
     }
 
+    //
+    function platform_to_region(platform_id) {
+      switch(platform_id) {
+        case 'BR1':
+          return 'BR';
+        case 'EUN1':
+          return 'EUNE';
+        case 'EUW1':
+          return 'EUW';
+        case 'JP1':
+          return 'JP';
+        case 'KR':
+          return 'KR';
+        case 'LA1': case 'LA2':
+          return 'LA';
+        case 'NA1':
+          return 'NA';
+        case 'OC1':
+          return 'OC';
+        case 'TR1':
+          return 'TR';
+        case 'RU':
+          return 'RU';
+        case 'PBE1':
+          return 'PBE';
+        default:
+          return 'UNKNOWN_PLATFORM';
+      }
+    }
+
     let self_participant_id = null;
     let player_map = game_json.participantIdentities.reduce((mapping, p) => {
-      if (p.player.summonerId === looked_up_summoner.id) {
+      let corresponding_participant_dto = game_json.participants.find(p_dto => p_dto.participantId === p.participantId);
+      if (corresponding_participant_dto.championId === looked_up_summoners_champion_id) {
         self_participant_id = p.participantId;
         mapping[p.participantId] = looked_up_summoner;
       } else {
-        mapping[p.participantId] = new Summoner(looked_up_summoner.region, p.player.summonerId, p.player.accountId, p.player.summonerName, p.player.profileIcon);
+        mapping[p.participantId] = new Summoner(platform_to_region(p.player.platformId), p.player.summonerId, p.player.accountId, p.player.summonerName, p.player.profileIcon);
       }
       return mapping;
     }, {});
     let ally_team_id = game_json.participants.filter(p => p.participantId === self_participant_id)[0].teamId;
 
     this.game_id = game_json.gameId;
+    this.region = platform_to_region(game_json.platformId);
     this.match_start_time = new Date(game_json.gameCreation);
     this.match_duration_seconds = game_json.gameDuration;
     this.league_version = game_json.gameVersion.split('.').slice(0,2).join('.');
     this.league_season = game_json.seasonId;
     this.teams = {
-      ally: parse_teamdata(ally_team_id, true, player_map),
-      enemy: parse_teamdata(ally_team_id, false, player_map)
+      ally: parse_teamdata(ally_team_id, true, player_map, self_participant_id),
+      enemy: parse_teamdata(ally_team_id, false, player_map, self_participant_id)
     };
 
   }

@@ -63,7 +63,9 @@
       <span title="Theoretical maximum 107 lane cs, 7 more spawns at exactly 10">{{s.cs_at_ten ? s.cs_at_ten+'cs @10' : ''}}</span>
       <br/>
       <span *ngIf="s.victory" title="{{s.nr_carry}}. carry in total damage to players">{{s.nr_carry}}. C</span>
-      <br *ngIf="!s.victory"/>
+      <br *ngIf="!s.victory || s.victory && s.region !== current_region"/>
+      <span *ngIf="s.region !== current_region">{{s.region}}</span>
+      <br *ngIf="s.region !== current_region"/>
     </span>
   </squarebrace-titled-container>
 
