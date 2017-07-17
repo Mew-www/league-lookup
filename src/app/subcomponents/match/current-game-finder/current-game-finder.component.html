@@ -34,10 +34,12 @@
     >
       {{error_message.length === 0 ? "Start" : "Try again"}}
     </button>
-    <p *ngIf="search_history.length > 0" class="GameFinder__search-history-title">
-      Past searches
-    </p>
-    <div *ngFor="let s of search_history" class="GameFinder__search-history-item">
+
+    <div *ngIf="search_history.length > 0" class="GameFinder__search-history">
+      <p class="GameFinder__search-history-title">
+        Past searches
+      </p>
+      <div *ngFor="let s of search_history" class="GameFinder__search-history-item">
       <span
           class="GameFinder__search-history-item-text"
           (click)="findGame(s)"
@@ -45,6 +47,7 @@
       >
         {{s.summoner_name}} ({{s.region}})
       </span>
+      </div>
     </div>
   </div>
 </div>
