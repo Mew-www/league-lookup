@@ -1,3 +1,5 @@
+@import '../../../../../node_modules/font-awesome/css/font-awesome.min.css';
+
 %clearfix { &:after { content: " "; display: table; clear: both; } }
 
 .GameFinder {
@@ -15,9 +17,7 @@
     &-text {
       font-family: "Roboto Mono", monospace;
     }
-    &-toggle-btn {
-
-    }
+    &-toggle-btn {  }
   }
 
   &__controls {
@@ -34,6 +34,14 @@
       display: block;
       font-family: Roboto, 'sans-serif';
     }
+    &-clarification-text {
+      display: block;
+      text-align: right;
+      font-family: Roboto, 'sans-serif';
+      font-size: 14px;
+      color: darkmagenta;
+      cursor: help;
+    }
     &-paste-input {
       font-family: monospace, serif;
       display: table;
@@ -46,6 +54,36 @@
     font-family: Roboto, 'sans-serif';
     display: table;
     margin: 0 auto;
+  }
+  &__search-history {
+    &-title {
+      padding: 0;
+      margin: 0;
+      margin-bottom: 5px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      color: black;
+      text-decoration: underline;
+      font-variant: small-caps;
+    }
+    &-item {
+      display: block;
+      margin-bottom: 5px;
+      &::before {
+        content: "• ";
+      }
+      &-text {
+        cursor: pointer;
+        color: #1a0dab;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+        &:visited {
+          color: #660099;
+        }
+      }
+    }
   }
 }
 

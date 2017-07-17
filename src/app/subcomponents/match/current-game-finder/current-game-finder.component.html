@@ -11,6 +11,14 @@
       <span class="GameFinder__target-helper-text">
         Type in-game-name of someone currently in a match here
       </span>
+      <span
+          *ngIf="search_history_used"
+          class="GameFinder__target-clarification-text"
+          title="Braces like (EUW) make search use that region, skipping your currently set region."
+      >
+        What the (braces) when using search history do?
+        <span class="fa fa-question-circle" aria-hidden="true"></span>
+      </span>
       <input
           class="GameFinder__target-paste-input"
           type="text"
@@ -26,6 +34,18 @@
     >
       {{error_message.length === 0 ? "Start" : "Try again"}}
     </button>
+    <p *ngIf="search_history.length > 0" class="GameFinder__search-history-title">
+      Past searches
+    </p>
+    <div *ngFor="let s of search_history" class="GameFinder__search-history-item">
+      <span
+          class="GameFinder__search-history-item-text"
+          (click)="findGame(s)"
+          title="Summoner {{s.summoner_id.toString()}} of {{s.region}}, last time visited named as &quot;{{s.summoner_name}}&quot;"
+      >
+        {{s.summoner_name}} ({{s.region}})
+      </span>
+    </div>
   </div>
 </div>
 <br/>

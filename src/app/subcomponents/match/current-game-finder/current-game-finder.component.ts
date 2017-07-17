@@ -11,6 +11,7 @@ import {Summoner} from "../../../models/dto/summoner";
 import {ChampionsContainer} from "../../../models/dto/containers/champions-container";
 import {SummonerspellsContainer} from "../../../models/dto/containers/summonerspells-container";
 import {GameMetadataService} from "../../../services/game-metadata.service";
+import {InGameSearch} from "../../../models/ingame_search";
 
 @Component({
   selector: 'current-game-finder',
@@ -23,6 +24,8 @@ export class CurrentGameFinderComponent implements OnInit {
 
   private current_region = null;
 
+  private search_history: Array<InGameSearch> = [];
+  private search_history_used: boolean = false;
   private target = "";
   private error_message ="";
   private subscription: Subscription = null;
@@ -42,15 +45,24 @@ export class CurrentGameFinderComponent implements OnInit {
     this.gettext = translator.getTranslation;
   }
 
-  private findGame() {
+  private findGame(past_search?: InGameSearch) {
+    if (past_search) {
+      this.target = `${past_search.summoner_name} (${past_search.region})`;
+      if (!this.search_history_used) {
+        this.search_history_used = true;
+      }
+    }
+    let region = this.target.indexOf('(') !== -1 ? this.target.split('(')[1].slice(0,-1) : this.current_region;
+    let target = this.target.indexOf('(') !== -1 ? this.target.split('(')[0] : this.target;
+
     this.error_message = "";
 
     this.subscription = this.bufferedRequests.buffer(() => {
-      return this.player_api.getSummonerByName(this.current_region, this.target);
+      return this.player_api.getSummonerByName(region, target);
     })
       .subscribe(api_res => {
         if (api_res.type === ResType.NOT_FOUND) {
-          this.error_message = `Could not find player named ${this.target} from server ${this.current_region}.`;
+          this.error_message = `Could not find player named ${target} from server ${region}.`;
         } else if (api_res.type === ResType.ERROR) {
           this.error_message = "An error happened trying to request player data. Try again.";
         } else if (api_res.type === ResType.SUCCESS) {
@@ -66,6 +78,20 @@ export class CurrentGameFinderComponent implements OnInit {
                 this.error_message = "An error happened trying to request current match. Try again.";
               } else if (game_api_res.type === ResType.SUCCESS) {
                 this.current_game_emitter.emit(game_api_res.data);
+                // Update search history
+                let existing_past_search = this.search_history.find(s => s.summoner_id === target_summoner.id && s.region === region);
+                if (existing_past_search) {
+                  // Increase search count
+                  existing_past_search.count++;
+                  // If name has changed since, update it too
+                  if (existing_past_search.summoner_name !== target_summoner.current_name) {
+                    existing_past_search.summoner_name = target_summoner.current_name;
+                  }
+                } else {
+                  this.search_history.push(new InGameSearch(target_summoner.id, target_summoner.current_name, region));
+                }
+                this.search_history.sort((a,b) => a.count - b.count);
+                this.preferencesService.setPref('game_searches', this.search_history);
               }
             })
         }
@@ -78,7 +104,9 @@ export class CurrentGameFinderComponent implements OnInit {
     this.metadata.summonerspells$.first().subscribe(container => this.summonerspells = container);
 
     // Expected to be set before init (see: Setup -component)
-    this.current_region = this.preferencesService['region'];
+    this.current_region = this.preferencesService.getPref('region');
+
+    this.search_history = this.preferencesService.getPref('game_searches') ? this.preferencesService.getPref('game_searches') : [];
 
     this.preferencesService.preferences$
       .subscribe(new_prefs => {
