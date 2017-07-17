@@ -1,12 +1,5 @@
 %clearfix { &:after { content: " "; display: table; clear: both; } }
 
-:host .Player {
-  border-bottom: 2px ridge saddlebrown;
-}
-:host:first-child .Player {
-  border-top: 2px ridge saddlebrown;
-}
-
 .Player {
   display: table;
   padding-top: 2px;
