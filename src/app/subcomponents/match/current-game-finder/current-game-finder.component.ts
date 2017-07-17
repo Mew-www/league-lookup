@@ -90,7 +90,7 @@ export class CurrentGameFinderComponent implements OnInit {
                 } else {
                   this.search_history.push(new InGameSearch(target_summoner.id, target_summoner.current_name, region));
                 }
-                this.search_history.sort((a,b) => a.count - b.count);
+                this.search_history.sort((a,b) => b.count - a.count);
                 this.preferencesService.setPref('game_searches', this.search_history);
               }
             })
