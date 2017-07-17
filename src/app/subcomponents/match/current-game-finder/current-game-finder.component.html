@@ -11,7 +11,13 @@
       <span class="GameFinder__target-helper-text">
         Type in-game-name of someone currently in a match here
       </span>
-      <input class="GameFinder__target-paste-input" type="text" [(ngModel)]="target" placeholder="Elaine Roberts"/>
+      <input
+          class="GameFinder__target-paste-input"
+          type="text"
+          [(ngModel)]="target"
+          (keyup.enter)="target.length === 0 || this.subscription !== null && !this.subscription.closed || findGame()"
+          placeholder="Elaine Roberts"
+      />
     </label>
     <button
         class="GameFinder__find-btn"
