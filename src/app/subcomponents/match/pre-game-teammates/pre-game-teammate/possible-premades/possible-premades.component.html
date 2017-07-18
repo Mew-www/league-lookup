@@ -1,5 +1,9 @@
-<div *ngIf="!possible_premades" class="Loading">
+<div *ngIf="!possible_premades && errors.length === 0" class="Loading">
   Loading premade data...
+</div>
+<div *ngIf="errors.length > 0">
+  <div *ngFor="let e of errors">{{e}}</div>
+  <button (click)="queryRecentPremades()">Try again</button>
 </div>
 <div *ngIf="possible_premades">
   <div
