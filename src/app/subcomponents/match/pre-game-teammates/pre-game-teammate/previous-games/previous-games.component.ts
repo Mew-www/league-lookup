@@ -32,9 +32,9 @@ export class PreviousGamesComponent implements OnInit {
   @Output() loaded: EventEmitter<boolean> = new EventEmitter();
 
   private current_region;
-  private ongoing_request: Subscription = null;
+  private subscription: Subscription = null;
   private days_ago_collections = null;
-  private error = '';
+  private error_message = '';
   private champion_id_filter = null;
 
   // Metadata
@@ -115,9 +115,11 @@ export class PreviousGamesComponent implements OnInit {
 
   private loadPreviousGames(opt_champion_id_filter?, opt_role_filter?) {
     // Cancel if any unfinished ongoing requests
-    if (this.ongoing_request && !this.ongoing_request.closed) {
+    if (this.subscription && !this.subscription.closed) {
       return;
     }
+
+    this.error_message = '';
 
     // If champion-filter is set then apply it
     let gamereferences = opt_champion_id_filter ?
@@ -139,7 +141,7 @@ export class PreviousGamesComponent implements OnInit {
 
     // Start loading (optionally limited) game details
     this.loadStart.emit(true);
-    this.ongoing_request = Observable.forkJoin(
+    this.subscription = Observable.forkJoin(
       gamereferences.map((gameref: GameReference) => this.buffered_requests.buffer(() => {
         return this.game_api.getHistoricalGame(gameref.region, gameref.game_id);
       }))
@@ -194,7 +196,7 @@ export class PreviousGamesComponent implements OnInit {
             return days_ago_collections;
           }, []);
         } else {
-          this.error = 'Something went wrong when requesting game details.';
+          this.error_message = 'Something went wrong when requesting game details.';
         }
         this.loaded.emit(true);
       });
