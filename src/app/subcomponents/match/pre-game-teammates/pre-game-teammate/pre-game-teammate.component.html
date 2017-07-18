@@ -42,11 +42,13 @@
       </div>
     </div>
 
-    <p *ngFor="let e of errors" class="Error">
-      {{e}}
-    </p>
-    <p *ngIf="!current_queue_past_3_weeks" [hidden]="hide_statistics">
+    <p *ngIf="!current_queue_past_3_weeks && !error_message" [hidden]="hide_statistics">
       Loading game history...
+    </p>
+    <p *ngIf="error_message" class="Error">
+      {{error_message}}
+      <br/>
+      <button (click)="queryMatchHistory()">Try again</button>
     </p>
 
     <previous-games
