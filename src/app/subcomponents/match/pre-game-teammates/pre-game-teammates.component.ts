@@ -39,6 +39,10 @@ export class PreGameTeammatesComponent implements OnInit, OnChanges {
               private player_api: PlayerApiService,
               private bufferedRequests: RatelimitedRequestsService) { }
 
+  private getTeammatesOfPlayer(summoner: Summoner) {
+    return this.teammates.filter(t => t.id != summoner.id);
+  }
+
   private handleSelectedInitialRole() {
     this.roles_selected++;
   }

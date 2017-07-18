@@ -15,6 +15,15 @@
                 [style.display]="role ? 'inline-block' : 'block'"
                 (selectedRole)="handleSelectedRole($event)">
             </role-selector>
+            <possible-premades
+                *ngIf="current_queue_past_3_weeks"
+                [hidden]="hide_statistics"
+
+                [recent_matches]="current_queue_past_3_weeks"
+                [past_game_limit]="5"
+                [player_itself]="summoner"
+                [other_teammates]="other_teammates">
+            </possible-premades>
           </span>
           <previous-roles
               class="Player__previous-roles"

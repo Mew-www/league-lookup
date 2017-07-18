@@ -18,6 +18,7 @@
         class="PreGameTeammates__teammate"
         *ngFor="let s of teammates"
         [summoner]="s"
+        [other_teammates]="getTeammatesOfPlayer(s)"
         [queueing_for]="queue"
         [display_summoner_icon]="display_icons"
         [use_minified_components]="minified_mode"

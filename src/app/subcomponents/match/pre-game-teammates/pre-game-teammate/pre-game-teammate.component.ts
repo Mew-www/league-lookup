@@ -16,6 +16,7 @@ import {GameMetadataService} from "../../../../services/game-metadata.service";
 export class PreGameTeammateComponent implements OnInit {
 
   @Input() summoner: Summoner;
+  @Input() other_teammates: Array<Summoner>;
   @Input() queueing_for: GameType;
   @Input() display_summoner_icon: boolean = false;
   @Input() use_minified_components: boolean = false;

@@ -1,0 +1,12 @@
+<div *ngIf="!possible_premades" class="Loading">
+  Loading premade data...
+</div>
+<div *ngIf="possible_premades">
+  <div
+      *ngFor="let p of possible_premades.filter(filterLikelyPremades)"
+      class="Premade"
+      title="They played {{p.found_in_games_total}} of {{p.searched_in_games_total}} most recent games together"
+  >
+    Possibly in premade with {{p.summoner.current_name}}
+  </div>
+</div>
