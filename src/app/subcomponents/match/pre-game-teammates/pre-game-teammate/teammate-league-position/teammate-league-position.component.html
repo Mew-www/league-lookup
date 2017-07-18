@@ -1,3 +1,12 @@
+<div *ngIf="!loaded_rankings && !error_message">
+  Loading rankings . . .
+</div>
+<div *ngIf="error_message">
+  {{error_message}}
+  <br/>
+  <button (click)="queryRankings()">Try again</button>
+</div>
+
 <div *ngIf="loaded_rankings && !use_minified">
   <div *ngFor="let ranking of loaded_rankings.sort(sortByQueue)">
 

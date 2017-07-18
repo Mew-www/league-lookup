@@ -8,6 +8,7 @@ import {RatelimitedRequestsService} from "../../../../../services/ratelimited-re
 import {PlayerApiService} from "../../../../../services/player-api.service";
 import {ResType} from "../../../../../enums/api-response-type";
 import {TranslatorService} from "../../../../../services/translator.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'teammate-league-position',
@@ -20,7 +21,8 @@ export class TeammateLeaguePositionComponent implements OnInit {
   @Input() current_queue: GameType;
   @Input() use_minified: boolean;
   private loaded_rankings: Array<LeaguePosition> = null;
-  private errors = [];
+  private error_message = '';
+  private subscription: Subscription = null;
 
   private unranked_badge_img_uri   = Settings.STATIC_BASE_URI + "unranked_emblem.png";
   private bronze_badge_img_uri     = Settings.STATIC_BASE_URI + "bronze_emblem.png";
@@ -113,9 +115,14 @@ export class TeammateLeaguePositionComponent implements OnInit {
     return lea.queue;
   }
 
-  ngOnInit() {
-    // Autoload rankings
-    this.buffered_requests.buffer(() => {
+  private queryRankings() {
+    if (this.subscription && !this.subscription.closed) {
+      return; // Requests in progress so noop
+    }
+
+    this.error_message = '';
+
+    this.subscription = this.buffered_requests.buffer(() => {
       return this.player_api.getRankings(this.summoner.region, this.summoner.id);
     })
       .subscribe(api_res => {
@@ -126,9 +133,14 @@ export class TeammateLeaguePositionComponent implements OnInit {
           this.loaded_rankings = [];
         }
         if (api_res.type === ResType.ERROR) {
-          this.errors.push(JSON.stringify(api_res.error));
+          this.error_message = `An error happened. Try again later. (${api_res.error})`;
         }
       });
+  }
+
+  ngOnInit() {
+    // Autoload rankings
+    this.queryRankings();
   }
 
 }
