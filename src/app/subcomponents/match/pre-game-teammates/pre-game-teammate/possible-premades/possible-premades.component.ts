@@ -103,6 +103,7 @@ export class PossiblePremadesComponent implements OnInit {
     this.metadata.champions$.first().subscribe(container => this.champions = container);
     this.metadata.items$.first().subscribe(container => this.items = container);
     this.metadata.summonerspells$.first().subscribe(container => this.summonerspells = container);
+    this.queryRecentPremades();
   }
 
 }
