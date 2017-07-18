@@ -69,8 +69,13 @@
     </span>
   </squarebrace-titled-container>
 
-  <p *ngIf="ongoing_request && !ongoing_request.closed">
+  <p *ngIf="subscription && !subscription.closed">
     Loading game details of {{limit}} most recent games . . .
+  </p>
+  <p *ngIf="error_message">
+    {{error_message}}
+    <br/>
+    <button (click)="loadPreviousGames(championSelector.value, roleSelector.value)">Try again</button>
   </p>
 
   <p *ngIf="days_ago_collections && days_ago_collections.length === 0">
