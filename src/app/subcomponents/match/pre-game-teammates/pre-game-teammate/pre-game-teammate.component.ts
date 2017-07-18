@@ -64,6 +64,8 @@ export class PreGameTeammateComponent implements OnInit {
       return; // Request in progress, noop
     }
 
+    this.error_message = '';
+
     this.subscription = this.buffered_requests.buffer(() => {
       return this.player_api.getListOfRankedGamesJson(this.summoner.region, this.summoner.account_id, GameType.SOLO_AND_FLEXQUEUE_5V5, this.champions)
     })
