@@ -12,6 +12,7 @@ import {ChampionsContainer} from "../../../../../models/dto/containers/champions
 import {ItemsContainer} from "../../../../../models/dto/containers/items-container";
 import {SummonerspellsContainer} from "../../../../../models/dto/containers/summonerspells-container";
 import {GameMetadataService} from "../../../../../services/game-metadata.service";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'possible-premades',
@@ -26,6 +27,8 @@ export class PossiblePremadesComponent implements OnInit {
   @Input() other_teammates: Array<Summoner>;
 
   private possible_premades: Array<Premade> = null;
+  private errors: Array<string> = [];
+  private subscription: Subscription = null;
 
   // Metadata
   private champions: ChampionsContainer;
@@ -40,18 +43,20 @@ export class PossiblePremadesComponent implements OnInit {
     return premade.found_in_games_total >= 2;
   }
 
-  ngOnInit() {
-    // Get first loads of static data
-    this.metadata.champions$.first().subscribe(container => this.champions = container);
-    this.metadata.items$.first().subscribe(container => this.items = container);
-    this.metadata.summonerspells$.first().subscribe(container => this.summonerspells = container);
+  private queryRecentPremades() {
+    if (this.subscription && !this.subscription.closed) {
+      return; // Requests in progress so noop
+    }
+
+    this.errors = [];
 
     let gamereferences = this.recent_matches.slice(0,this.past_game_limit);
     if (gamereferences.length === 0) {
       this.possible_premades = [];
+      return; // No gamereferences passed to input
     }
 
-    Observable.forkJoin(
+    this.subscription = Observable.forkJoin(
       gamereferences.map((gameref: GameReference) => this.buffered_requests.buffer(() => {
         return this.game_api.getHistoricalGame(gameref.region, gameref.game_id);
       }))
@@ -83,8 +88,21 @@ export class PossiblePremadesComponent implements OnInit {
             }
           }
           this.possible_premades = possible_premades;
+        } else {
+          for (let game_api_res of game_api_responses) {
+            if (game_api_res.type === ResType.ERROR) {
+              this.errors.push(`Error when requesting match details. (${game_api_res.error})`);
+            }
+          }
         }
       });
+  }
+
+  ngOnInit() {
+    // Get first loads of static data
+    this.metadata.champions$.first().subscribe(container => this.champions = container);
+    this.metadata.items$.first().subscribe(container => this.items = container);
+    this.metadata.summonerspells$.first().subscribe(container => this.summonerspells = container);
   }
 
 }
