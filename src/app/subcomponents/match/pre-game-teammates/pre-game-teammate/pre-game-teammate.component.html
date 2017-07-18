@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <p *ngIf="!current_queue_past_3_weeks && !error_message" [hidden]="hide_statistics">
+    <p *ngIf="subscription && !subscription.closed" [hidden]="hide_statistics">
       Loading game history...
     </p>
     <p *ngIf="error_message" class="Error">

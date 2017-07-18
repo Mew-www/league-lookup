@@ -1,4 +1,4 @@
-<div *ngIf="!loaded_rankings && !error_message">
+<div *ngIf="subscription && !subscription.closed">
   Loading rankings . . .
 </div>
 <div *ngIf="error_message">

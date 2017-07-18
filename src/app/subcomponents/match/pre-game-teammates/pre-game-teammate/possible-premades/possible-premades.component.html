@@ -1,4 +1,4 @@
-<div *ngIf="!possible_premades && errors.length === 0" class="Loading">
+<div *ngIf="subscription && !subscription.closed" class="Loading">
   Loading premade data...
 </div>
 <div *ngIf="errors.length > 0">
