@@ -110,6 +110,7 @@ export class PreGameTeammateComponent implements OnInit {
   ngOnInit() {
     // Get first loads of static data (except items, saved for later / in sub-components)
     this.metadata.champions$.first().subscribe(container => this.champions = container);
+    this.queryMatchHistory();
   }
 
 }
