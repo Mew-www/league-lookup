@@ -24,6 +24,10 @@ export class CurrentGameComponent implements OnInit, OnChanges {
   private enemies: Array<Summoner>;
   private errors = [];
 
+  private getTeammatesOfPlayer(summoner: Summoner) {
+    return this.enemies.filter(t => t.id != summoner.id);
+  }
+
 
   constructor(private player_api: PlayerApiService,
               private buffered_requests: RatelimitedRequestsService) { }
