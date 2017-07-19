@@ -1,6 +1,21 @@
-<div *ngIf="enemies" [dragula]="'teammate-bag'" [dragulaModel]="enemies">
+<div *ngIf="enemies" [dragula]="'teammate-bag'" [dragulaModel]="enemies" class="Teammates">
   <pre-game-teammate
       *ngFor="let s of enemies"
+      class="Teammates__teammate"
+      [summoner]="s"
+      [other_teammates]="getTeammatesOfPlayer(s)"
+      [queueing_for]="current_game.game_type"
+      [display_summoner_icon]="true"
+      [use_minified_components]="false"
+
+      [hide_statistics]="false">
+  </pre-game-teammate>
+</div>
+
+<div *ngIf="allies" [dragula]="'teammate-bag'" [dragulaModel]="allies" class="Teammates">
+  <pre-game-teammate
+      *ngFor="let s of allies"
+      class="Teammates__teammate"
       [summoner]="s"
       [other_teammates]="getTeammatesOfPlayer(s)"
       [queueing_for]="current_game.game_type"

@@ -22,6 +22,7 @@ export class CurrentGameComponent implements OnInit, OnChanges {
 
   private ongoing_request: Subscription;
   private enemies: Array<Summoner>;
+  private allies: Array<Summoner>;
   private errors = [];
 
   private getTeammatesOfPlayer(summoner: Summoner) {
@@ -53,6 +54,18 @@ export class CurrentGameComponent implements OnInit, OnChanges {
           if (responses.every(api_res => api_res.type === ResType.SUCCESS)) {
             this.enemies = responses.map(api_res => <Summoner>api_res.data);
           }
+
+          this.ongoing_request = Observable.forkJoin(
+            this.current_game.allies.map(participant => this.buffered_requests.buffer(() => {
+              return this.player_api.getSummonerByName(this.current_game.region, participant.summoner_name);
+            }))
+          )
+            .subscribe(api_responses => {
+              let responses = Object.keys(api_responses).map(k => api_responses[k]);
+              if (responses.every(api_res => api_res.type === ResType.SUCCESS)) {
+                this.allies = responses.map(api_res => <Summoner>api_res.data);
+              }
+            });
         });
     }
   }
