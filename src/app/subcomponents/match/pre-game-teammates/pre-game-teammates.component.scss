@@ -1,4 +1,12 @@
-.PreGameTeammates {
+.PreGame {
+  display: table;
+}
+
+.CloseBtn {
+  float: right;
+}
+
+.Teammates {
   display: table;
   padding: 3px;
   border: 1px solid slategray;

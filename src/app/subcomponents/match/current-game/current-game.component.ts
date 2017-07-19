@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {SummonerspellsContainer} from "../../../models/dto/containers/summonerspells-container";
 import {ChampionsContainer} from "../../../models/dto/containers/champions-container";
 import {RatelimitedRequestsService} from "../../../services/ratelimited-requests.service";
@@ -28,13 +28,14 @@ export class CurrentGameComponent implements OnInit, OnChanges {
   private allies: Array<Summoner>;
   private errors = [];
 
-  private getTeammatesOfPlayer(summoner: Summoner) {
-    return this.enemies.filter(t => t.id != summoner.id);
-  }
-
+  @Output() close_emitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private player_api: PlayerApiService,
               private buffered_requests: RatelimitedRequestsService) { }
+
+  private getTeammatesOfPlayer(summoner: Summoner) {
+    return this.enemies.filter(t => t.id != summoner.id);
+  }
 
   ngOnInit() {  }
 

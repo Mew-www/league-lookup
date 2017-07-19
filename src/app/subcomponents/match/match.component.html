@@ -20,10 +20,13 @@
     [queue]="lobby.game_type"
     [teammates]="lobby.teammates"
 
-    (current_game_emitter)="handleNewCurrentGame($event)">
+    (current_game_emitter)="handleNewCurrentGame($event)"
+    (close_emitter)="lobby = null">
 </pre-game-teammates>
 
 <current-game
     *ngIf="current_game"
-    [current_game]="current_game">
+    [current_game]="current_game"
+
+    (close_emitter)="current_game = null">
 </current-game>

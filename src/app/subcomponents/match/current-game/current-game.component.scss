@@ -1,9 +1,22 @@
+.CurrentGame {
+  display: table;
+}
+
+.CloseBtn {
+  float: right;
+}
+
 .Teammates {
   display: table;
   padding: 3px;
   border: 1px solid slategray;
   box-shadow: 2px 2px 4px 0 #c9c9c9;
   margin-top: 3px;
+
+  // Side-by-side viewable when minified
+  float: left;
+  margin-left: 15px;
+  margin-right: 15px;
 
   &__teammate {
     display: table;

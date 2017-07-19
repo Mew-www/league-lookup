@@ -33,6 +33,7 @@ export class PreGameTeammatesComponent implements OnInit, OnChanges {
   private error_message = "";
 
   @Output() current_game_emitter: EventEmitter<CurrentGame> = new EventEmitter();
+  @Output() close_emitter: EventEmitter<boolean> = new EventEmitter();
 
   constructor(private metadata: GameMetadataService,
               private game_api: GameApiService,

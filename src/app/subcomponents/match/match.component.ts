@@ -23,14 +23,17 @@ export class MatchComponent implements OnInit, AfterViewInit {
   constructor(private metadata: GameMetadataService) { }
 
   private handleNewLobby(new_lobby) {
-    this.lobby = new_lobby;
     // Reset the current_game if a new lobby is given
     this.current_game = null;
+
+    this.lobby = new_lobby;
     this.lobby_generator.minimized = true;
     this.current_game_finder.minimized = true;
   }
 
   private handleNewCurrentGame(new_current_game) {
+    // Reset the lobby if a current gave is given (same as lobby, or different one, TODO pass lobby as optional arg here)
+    this.lobby = null;
     this.current_game = new_current_game;
     this.lobby_generator.minimized = true;
     this.current_game_finder.minimized = true;

@@ -1,4 +1,5 @@
-<div>
+<div class="PreGame">
+  <button class="CloseBtn" (click)="close_emitter.emit(true)" title="Close this champion-selection">x</button>
   <label>
     Show icons?
     <input type="checkbox" [(ngModel)]="display_icons" />
@@ -13,10 +14,10 @@
     Minified mode?
     <input type="checkbox" [(ngModel)]="minified_mode" />
   </label>
-  <div [dragula]="'teammate-bag'" [dragulaModel]="teammates" class="PreGameTeammates">
+  <div [dragula]="'teammate-bag'" [dragulaModel]="teammates" class="Teammates">
     <pre-game-teammate
         *ngFor="let s of teammates"
-        class="PreGameTeammates__teammate"
+        class="Teammates__teammate"
         [summoner]="s"
         [other_teammates]="getTeammatesOfPlayer(s)"
         [queueing_for]="queue"
