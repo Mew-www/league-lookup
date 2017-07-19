@@ -1,3 +1,14 @@
+<label>
+  Show icons?
+  <input type="checkbox" [(ngModel)]="display_icons" />
+</label>
+<br/>
+<label>
+  Minified mode?
+  <input type="checkbox" [(ngModel)]="minified_mode" />
+</label>
+<br/>
+
 <div *ngIf="enemies" [dragula]="'teammate-bag'" [dragulaModel]="enemies" class="Teammates">
   <pre-game-teammate
       *ngFor="let s of enemies"
@@ -5,8 +16,8 @@
       [summoner]="s"
       [other_teammates]="getTeammatesOfPlayer(s)"
       [queueing_for]="current_game.game_type"
-      [display_summoner_icon]="true"
-      [use_minified_components]="false"
+      [display_summoner_icon]="display_icons"
+      [use_minified_components]="minified_mode"
 
       [hide_statistics]="false">
   </pre-game-teammate>
@@ -19,8 +30,8 @@
       [summoner]="s"
       [other_teammates]="getTeammatesOfPlayer(s)"
       [queueing_for]="current_game.game_type"
-      [display_summoner_icon]="true"
-      [use_minified_components]="false"
+      [display_summoner_icon]="display_icons"
+      [use_minified_components]="minified_mode"
 
       [hide_statistics]="false">
   </pre-game-teammate>

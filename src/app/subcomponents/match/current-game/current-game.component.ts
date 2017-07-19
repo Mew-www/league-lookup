@@ -20,6 +20,9 @@ export class CurrentGameComponent implements OnInit, OnChanges {
 
   @Input() current_game: CurrentGame;
 
+  private display_icons: boolean = false;
+  private minified_mode: boolean = true;
+
   private ongoing_request: Subscription;
   private enemies: Array<Summoner>;
   private allies: Array<Summoner>;
