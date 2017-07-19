@@ -15,8 +15,8 @@
   </label>
   <div [dragula]="'teammate-bag'" [dragulaModel]="teammates" class="PreGameTeammates">
     <pre-game-teammate
-        class="PreGameTeammates__teammate"
         *ngFor="let s of teammates"
+        class="PreGameTeammates__teammate"
         [summoner]="s"
         [other_teammates]="getTeammatesOfPlayer(s)"
         [queueing_for]="queue"
