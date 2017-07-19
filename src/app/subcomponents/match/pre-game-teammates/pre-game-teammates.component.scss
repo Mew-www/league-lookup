@@ -1,9 +1,33 @@
+@import '../../../../../node_modules/font-awesome/css/font-awesome.min.css';
+
 .PreGame {
   display: table;
 }
 
 .CloseBtn {
   float: right;
+}
+
+.GameSummaryControls {
+  display: table;
+  padding-right: 4px;
+  border: 1px solid lightgrey;
+  &__title {
+    padding: 0;
+    margin: 0;
+    margin-left: 4px;
+  }
+  &__control {
+    margin-right: 1em;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.TipIndicatorIcon {
+  cursor: help;
+  color: darkmagenta;
 }
 
 .Teammates {

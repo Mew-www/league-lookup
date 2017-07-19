@@ -27,6 +27,11 @@ export class PreviousGamesComponent implements OnInit {
   @Input() slice_of_gamehistory: Array<GameReference>; // Required
   @Input() limit: number = null; // Optional; First N games
 
+  @Input() display_summary_kda: boolean = true;
+  @Input() display_summary_cs: boolean = true;
+  @Input() display_summary_cs10: boolean = true;
+  @Input() display_summary_damageth: boolean = true;
+
   // State output
   @Output() loadStart: EventEmitter<boolean> = new EventEmitter();
   @Output() loaded: EventEmitter<boolean> = new EventEmitter();

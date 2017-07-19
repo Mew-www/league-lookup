@@ -26,6 +26,11 @@ export class PreGameTeammatesComponent implements OnInit, OnChanges {
   private wait_role_selection: boolean = true;
   private roles_selected = 0;
 
+  private display_summary_kda: boolean = false;
+  private display_summary_cs: boolean = false;
+  private display_summary_cs10: boolean = false;
+  private display_summary_damageth: boolean = true;
+
   // Related to finding-a-currentgame
   private champions: ChampionsContainer;
   private summonerspells: SummonerspellsContainer;

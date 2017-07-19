@@ -14,6 +14,30 @@
     Minified mode?
     <input type="checkbox" [(ngModel)]="minified_mode" />
   </label>
+  <div *ngIf="!minified_mode && (!wait_role_selection || wait_role_selection && roles_selected >= teammates.length)" class="GameSummaryControls">
+    <p class="GameSummaryControls__title">Display in game summaries:</p>
+    <label class="GameSummaryControls__control">
+      <input type="checkbox" [(ngModel)]="display_summary_kda" />
+      K/D/A
+    </label>
+    <label class="GameSummaryControls__control">
+      <input type="checkbox" [(ngModel)]="display_summary_cs" />
+      lane cs (total)
+    </label>
+    <label class="GameSummaryControls__control">
+      <input type="checkbox" [(ngModel)]="display_summary_cs10" />
+      lane cs at 10:00
+    </label>
+    <label class="GameSummaryControls__control">
+      <input type="checkbox" [(ngModel)]="display_summary_damageth" />
+      Damage placement
+      <span
+          class="TipIndicatorIcon fa fa-question-circle"
+          aria-hidden="true"
+          title="Total damage to enemy champions #1..5"
+      ></span>
+    </label>
+  </div>
   <div [dragula]="'teammate-bag'" [dragulaModel]="teammates" class="Teammates">
     <pre-game-teammate
         *ngFor="let s of teammates"
@@ -23,6 +47,11 @@
         [queueing_for]="queue"
         [display_summoner_icon]="display_icons"
         [use_minified_components]="minified_mode"
+
+        [display_summary_kda]="display_summary_kda"
+        [display_summary_cs]="display_summary_cs"
+        [display_summary_cs10]="display_summary_cs10"
+        [display_summary_damageth]="display_summary_damageth"
 
         [hide_statistics]="wait_role_selection && roles_selected < teammates.length"
         (selectedInitialRole)="handleSelectedInitialRole()">

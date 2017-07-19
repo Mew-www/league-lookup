@@ -23,6 +23,11 @@ export class PreGameTeammateComponent implements OnInit {
   @Input() display_summoner_icon: boolean = false;
   @Input() use_minified_components: boolean = false;
 
+  @Input() display_summary_kda: boolean = false;
+  @Input() display_summary_cs: boolean = false;
+  @Input() display_summary_cs10: boolean = false;
+  @Input() display_summary_damageth: boolean = true;
+
   @Input() hide_statistics: boolean;
   @Output() selectedInitialRole: EventEmitter<boolean> = new EventEmitter();
 
