@@ -30,11 +30,11 @@ export class PlayerApiService {
             if (error_res.json().hasOwnProperty("status") && error_res.json()['status'] === 418) {
               return Observable.of(new ApiResponseTryLater(error_res.json()['data']['Retry-After']));
             } else {
-              return Observable.of(new ApiResponseError(error_res.json()['data'].toString()));
+              return Observable.of(new ApiResponseError(JSON.stringify(error_res.json()['data'])));
             }
 
           default:
-            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
+            return Observable.of(new ApiResponseError(error_res.text()));
         }
       });
   }
@@ -53,11 +53,11 @@ export class PlayerApiService {
             if (error_res.json().hasOwnProperty("status") && error_res.json()['status'] === 418) {
               return Observable.of(new ApiResponseTryLater(error_res.json()['data']['Retry-After']));
             } else {
-              return Observable.of(new ApiResponseError(error_res.json()['data'].toString()));
+              return Observable.of(new ApiResponseError(JSON.stringify(error_res.json()['data'])));
             }
 
           default:
-            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
+            return Observable.of(new ApiResponseError(error_res.text()));
         }
       });
   }
@@ -76,11 +76,11 @@ export class PlayerApiService {
             if (error_res.json().hasOwnProperty("status") && error_res.json()['status'] === 418) {
               return Observable.of(new ApiResponseTryLater(error_res.json()['data']['Retry-After']));
             } else {
-              return Observable.of(new ApiResponseError(error_res.json()['data'].toString()));
+              return Observable.of(new ApiResponseError(JSON.stringify(error_res.json()['data'])));
             }
 
           default:
-            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
+            return Observable.of(new ApiResponseError(error_res.text()));
         }
       });
   }
@@ -105,11 +105,11 @@ export class PlayerApiService {
             if (error_res.json().hasOwnProperty("status") && error_res.json()['status'] === 418) {
               return Observable.of(new ApiResponseTryLater(error_res.json()['data']['Retry-After']));
             } else {
-              return Observable.of(new ApiResponseError(error_res.json()['data'].toString()));
+              return Observable.of(new ApiResponseError(JSON.stringify(error_res.json()['data'])));
             }
 
           default:
-            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
+            return Observable.of(new ApiResponseError(error_res.text()));
         }
       });
   }
@@ -134,11 +134,11 @@ export class PlayerApiService {
             if (error_res.json().hasOwnProperty("status") && error_res.json()['status'] === 418) {
               return Observable.of(new ApiResponseTryLater(error_res.json()['data']['Retry-After']));
             } else {
-              return Observable.of(new ApiResponseError(error_res.json()['data'].toString()));
+              return Observable.of(new ApiResponseError(JSON.stringify(error_res.json()['data'])));
             }
 
           default:
-            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
+            return Observable.of(new ApiResponseError(error_res.text()));
         }
       });
   }
@@ -154,11 +154,11 @@ export class PlayerApiService {
             if (error_res.json().hasOwnProperty("status") && error_res.json()['status'] === 418) {
               return Observable.of(new ApiResponseTryLater(error_res.json()['data']['Retry-After']));
             } else {
-              return Observable.of(new ApiResponseError(error_res.json()['data'].toString()));
+              return Observable.of(new ApiResponseError(JSON.stringify(error_res.json()['data'])));
             }
 
           default:
-            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
+            return Observable.of(new ApiResponseError(error_res.text()));
         }
       });
   }
@@ -175,11 +175,11 @@ export class PlayerApiService {
             if (error_res.json().hasOwnProperty("status") && error_res.json()['status'] === 418) {
               return Observable.of(new ApiResponseTryLater(error_res.json()['data']['Retry-After']));
             } else {
-              return Observable.of(new ApiResponseError(error_res.json()['data'].toString()));
+              return Observable.of(new ApiResponseError(JSON.stringify(error_res.json()['data'])));
             }
 
           default:
-            return Observable.of(new ApiResponseError(JSON.stringify(error_res.json())));
+            return Observable.of(new ApiResponseError(error_res.text()));
         }
       });
   }
