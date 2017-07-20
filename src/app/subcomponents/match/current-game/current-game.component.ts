@@ -33,8 +33,8 @@ export class CurrentGameComponent implements OnInit, OnChanges {
   constructor(private player_api: PlayerApiService,
               private buffered_requests: RatelimitedRequestsService) { }
 
-  private getTeammatesOfPlayer(summoner: Summoner) {
-    return this.enemies.filter(t => t.id != summoner.id);
+  private getTeammatesOfPlayer(summoner: Summoner, team: Array<Summoner>) {
+    return team.filter(t => t.id != summoner.id);
   }
 
   ngOnInit() {  }
