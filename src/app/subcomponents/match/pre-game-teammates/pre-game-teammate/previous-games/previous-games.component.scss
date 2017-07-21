@@ -2,8 +2,6 @@
   &__controls {
     display: inline-block;
     vertical-align: top;
-    position: relative;
-    top: 1em;
 
     font-family: 'Roboto Condensed', 'sans-serif';
     font-size: 14px;
@@ -37,5 +35,9 @@
   }
   &--loss {
     background: lightpink;
+  }
+  &__at-ten-text {
+    font-size: 14px;
+    font-weight: bold;
   }
 }

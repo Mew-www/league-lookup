@@ -1,7 +1,7 @@
 <div class="PreviousGames">
 
   <div class="PreviousGames__controls">
-    <span>Games past 3 weeks</span>
+    <span>Games past 3 weeks:</span>
     <br/>
     <label class="PreviousGames__controls-row">
       <span class="PreviousGames__controls-row-label">on lane/role</span>
@@ -61,11 +61,16 @@
         <br/>
       </span>
       <span *ngIf="display_summary_cs">
-        <span title="{{s.cs_lane}} in lane">{{s.cs_lane+s.cs_jungle}} cs</span>
+        <span title="{{s.cs_lane}} in lane">
+          {{s.cs_lane+s.cs_jungle}}
+          cs
+        </span>
         <br/>
       </span>
       <span *ngIf="display_summary_cs10">
-        <span title="Theoretical maximum 107 lane cs, 7 more spawns at exactly 10">{{s.cs_at_ten ? s.cs_at_ten+'cs @10' : ''}}</span>
+        <span *ngIf="s.cs_at_ten" title="Theoretical maximum 107 lane cs, 7 more spawns at exactly 10">
+          {{s.cs_at_ten}} cs<span class="GameSummary__at-ten-text">@10</span>
+        </span>
         <br/>
       </span>
       <span *ngIf="display_summary_damageth">
