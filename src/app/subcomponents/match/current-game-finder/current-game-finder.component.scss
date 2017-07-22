@@ -56,6 +56,10 @@
     margin: 0 auto;
   }
   &__search-history {
+    // Center
+    display: table;
+    margin: 0 auto;
+    // Limit height & make it scrollable whenever max-height
     max-height: 120px;
     overflow-y: auto;
     &-title {
