@@ -41,7 +41,7 @@
           <input class="ChatParser__self-paste-input" type="text" [(ngModel)]="user_itself" (change)="updateSelfOrNoop()" placeholder="Cueball"/>
           <label>
             <input class="RememberCheck" type="checkbox" [(ngModel)]="remember_self" (change)="updateOrForgetSelf()"/>
-            <span class="RememberLabel">remember me <span class="RememberLabel__icon">♥</span></span>
+            <span class="RememberLabel">remember me</span>
           </label>
         </label>
         <label class="ChatParser__duo-queuer">
@@ -58,7 +58,7 @@
           <input class="ChatParser__duo-queuer-paste-input" type="text" [(ngModel)]="duoqueue_partner" (change)="updatePartnerOrNoop()" placeholder="Megan"/>
           <label>
             <input class="RememberCheck" type="checkbox" [(ngModel)]="remember_partner" (change)="updateOrForgetPartner()"/>
-            <span class="RememberLabel">remember me <span class="RememberLabel__icon">♡</span></span>
+            <span class="RememberLabel">remember me</span>
           </label>
         </label>
       </div>
