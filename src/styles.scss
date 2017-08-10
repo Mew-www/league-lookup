@@ -5,3 +5,18 @@
 [hidden] {
   display: none !important;
 }
+
+.content {
+  min-height: calc(100vh - 3.75em - 8px - 1px); // 3 lines, 4+4 px pad, and 1px to prevent overflow detection at 100% content
+}
+
+.disclaimer {
+  width: 30%;
+  position: relative;
+  left: 70%;
+
+  font-size: 12px;
+  line-height: 1.25em; // Presumably default but enforce it here
+
+  padding: 4px;
+}
