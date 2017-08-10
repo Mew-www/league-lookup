@@ -64,6 +64,25 @@
       </div>
       <img class="RankingMinified__badge" src="{{getTierIconUri(ranking)}}"/>
       <span>{{ranking.league_points}} LP</span>
+      <br/>
+      <span>({{Math.round(ranking.wins / (ranking.wins+ranking.losses) * 100)}}% WR)</span>
+
+      <div *ngIf="ranking.league_points >= 95 && !ranking.in_series" class="RankingMinified__warning">
+        In the care-zone
+        <span
+            class="RankingMinified__warning-clarification-icon fa fa-question-circle"
+            aria-hidden="true"
+            title="Between 95 and 99 LP, before series. Place where people may be upset they didn't get to promos."
+        ></span>
+        <span *ngIf="(ranking.wins / (ranking.wins+ranking.losses)) > 0.6">
+          with nothing to lose
+          <span
+              class="RankingMinified__warning-clarification-icon fa fa-question-circle"
+              aria-hidden="true"
+              title="Over 60% winrate means he/she may lose 15 or less LP, so he/she may not care about loss."
+          ></span>
+        </span>
+      </div>
     </div>
   </div>
 </div>

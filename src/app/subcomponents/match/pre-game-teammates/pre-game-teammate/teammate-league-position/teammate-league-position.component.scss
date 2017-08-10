@@ -1,3 +1,5 @@
+@import '../../../../../../../node_modules/font-awesome/css/font-awesome.min.css';
+
 .Ranking {
   margin-left: 11px;
   margin-bottom: 11px;
@@ -54,7 +56,9 @@
   &__header {
     display: inline-block;
   }
-  &__name {
+  &__tier-name {
+    text-transform: uppercase;
+    font-weight: 700;
   }
   &__badge {
     width: 20px;
@@ -62,9 +66,15 @@
     position: relative;
     top: 4px;
   }
-  &__tier-name {
-    text-transform: uppercase;
+  &__warning {
+    color: red;
     font-weight: 700;
+    font-size: 14px;
+    font-family: 'Roboto Condensed', 'sans-serif';
+    &-clarification-icon {
+      cursor: help;
+      color: darkmagenta;
+    }
   }
 }
 
