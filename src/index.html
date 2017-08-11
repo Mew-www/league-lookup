@@ -12,6 +12,37 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Oswald:400,700" rel="stylesheet">
+  <style>
+    .content {
+      /* 100 viewport height minus disclaimer:
+          - 3 lines for content
+          - 0.1 extra line for <disclaimer> super/sub overflows (this is kinda vague what's exact but 0.1 seems to work
+          - 4+4 px pad
+          - 1px to prevent overflow detection at otherwise-100%-height-content
+      */
+      min-height: calc(100vh - 3.75em - 0.1em - 8px - 1px);
+    }
+    .disclaimer {
+      width: 30%;
+      position: relative;
+      left: 70%;
+      font-size: 12px;
+      line-height: 1.25em; /* Presumably default, enforce it just-in-case for .content min-height's calc() */
+      padding: 4px;
+    }
+    .disclaimer-start {
+      font-family: 'Roboto', sans-serif;
+      font-variant-position: super;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+    .disclaimer-end {
+      font-family: 'Roboto', sans-serif;
+      font-variant-position: sub;
+      font-size: 14px;
+      text-transform: uppercase;
+    }
+  </style>
 </head>
 <body>
   <div class="content">

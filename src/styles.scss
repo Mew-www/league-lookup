@@ -1,42 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/dragula/dist/dragula.min.css';
 
-// Enforce the angular2's [hidden] attribute...
+// Enforce the [hidden] attribute angular2 uses ...
 [hidden] {
   display: none !important;
-}
-
-.content {
-  /*
-    100 viewport height minus disclaimer:
-      - 3 lines for content
-      - 0.1 extra line for <disclaimer> super/sub overflows (this is kinda vague what's exact but 0.1 seems to work
-      - 4+4 px pad
-      - 1px to prevent overflow detection at otherwise-100%-height-content
-   */
-  min-height: calc(100vh - 3.75em - 0.1em - 8px - 1px);
-}
-
-.disclaimer {
-  width: 30%;
-  position: relative;
-  left: 70%;
-
-  font-size: 12px;
-  line-height: 1.25em; // Presumably default but enforce it here
-
-  padding: 4px;
-
-  &-start {
-    font-family: 'Roboto', sans-serif;
-    font-variant-position: super;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-  &-end {
-    font-family: 'Roboto', sans-serif;
-    font-variant-position: sub;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
 }
