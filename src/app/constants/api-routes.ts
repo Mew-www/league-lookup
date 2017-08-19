@@ -129,6 +129,14 @@ export class ApiRoutes {
   };
 
   /**
+   * Q & A
+   */
+  public static QA_ADM_LIST_ALL_QUESTIONS_URI = Settings.API_BASE_URI + "qa/adm/list_all";
+
+  public static QA_LIST_ANSWERED_QUESTIONS_URI = Settings.API_BASE_URI + "qa/list_answered_questions";
+  public static QA_ADD_QUESTION_URI = Settings.API_BASE_URI + "qa/add_question";
+
+  /**
    * Dev
    */
   public static LOGGING_URI = Settings.API_BASE_URI + "log";
