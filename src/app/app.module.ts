@@ -24,7 +24,7 @@ import {DragulaModule} from "ng2-dragula";
 import { PlayerLookupComponent } from './genericcomponents/player-lookup/player-lookup.component';
 import { TeammateLeaguePositionComponent } from './genericcomponents/player-lookup/teammate-league-position/teammate-league-position.component';
 import { RoleSelectorComponent } from './genericcomponents/player-lookup/teammate-role-selector/role-selector.component';
-import { PreferredLanesComponent } from './genericcomponents/preferred-lanes/preferred-lanes.component';
+import { PreferredLanesComponent } from './genericcomponents/player-lookup/previous-roles/preferred-lanes/preferred-lanes.component';
 import { PreviousGamesComponent } from './genericcomponents/player-lookup/previous-games/previous-games.component';
 import { SquarebraceTitledContainerComponent } from './genericcomponents/squarebrace-titled-container/squarebrace-titled-container.component';
 import {CanActivateViaRegionGuard} from "./guards/can-activate-via-region.guard";
