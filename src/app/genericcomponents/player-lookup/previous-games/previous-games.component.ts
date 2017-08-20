@@ -1,20 +1,20 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {GameReference} from "../../../../../models/dto/game-reference";
+import {GameReference} from "../../../models/dto/game-reference";
 import {Subscription} from "rxjs/Subscription";
 import {Observable} from "rxjs/Observable";
-import {RatelimitedRequestsService} from "../../../../../services/ratelimited-requests.service";
-import {GameApiService} from "../../../../../services/game-api.service";
-import {ResType} from "../../../../../enums/api-response-type";
-import {Summoner} from "../../../../../models/dto/summoner";
-import {GameRecordPersonalised} from "../../../../../models/game-record-personalised";
-import {GameRecord} from "../../../../../models/dto/game-record";
-import {ChampionsContainer} from "../../../../../models/dto/containers/champions-container";
-import {ItemsContainer} from "../../../../../models/dto/containers/items-container";
-import {SummonerspellsContainer} from "../../../../../models/dto/containers/summonerspells-container";
-import {TranslatorService} from "../../../../../services/translator.service";
-import {Champion} from "../../../../../models/dto/champion";
-import {GameMetadataService} from "../../../../../services/game-metadata.service";
-import {PreferencesService} from "../../../../../services/preferences.service";
+import {RatelimitedRequestsService} from "../../../services/ratelimited-requests.service";
+import {GameApiService} from "../../../services/game-api.service";
+import {ResType} from "../../../enums/api-response-type";
+import {Summoner} from "../../../models/dto/summoner";
+import {GameRecordPersonalised} from "../../../models/game-record-personalised";
+import {GameRecord} from "../../../models/dto/game-record";
+import {ChampionsContainer} from "../../../models/dto/containers/champions-container";
+import {ItemsContainer} from "../../../models/dto/containers/items-container";
+import {SummonerspellsContainer} from "../../../models/dto/containers/summonerspells-container";
+import {TranslatorService} from "../../../services/translator.service";
+import {Champion} from "../../../models/dto/champion";
+import {GameMetadataService} from "../../../services/game-metadata.service";
+import {PreferencesService} from "../../../services/preferences.service";
 
 @Component({
   selector: 'previous-games',

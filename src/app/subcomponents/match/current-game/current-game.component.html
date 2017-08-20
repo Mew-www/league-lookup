@@ -12,7 +12,7 @@
   <br/>
 
   <div *ngIf="enemies" [dragula]="'enemies-bag'" [dragulaModel]="enemies" class="Teammates">
-    <pre-game-teammate
+    <player-lookup
         *ngFor="let s of enemies"
         class="Teammates__teammate"
         [summoner]="s"
@@ -22,11 +22,11 @@
         [use_minified_components]="minified_mode"
 
         [hide_statistics]="false">
-    </pre-game-teammate>
+    </player-lookup>
   </div>
 
   <div *ngIf="allies" [dragula]="'allies-bag'" [dragulaModel]="allies" class="Teammates">
-    <pre-game-teammate
+    <player-lookup
         *ngFor="let s of allies"
         class="Teammates__teammate"
         [summoner]="s"
@@ -36,6 +36,6 @@
         [use_minified_components]="minified_mode"
 
         [hide_statistics]="false">
-    </pre-game-teammate>
+    </player-lookup>
   </div>
 </div>

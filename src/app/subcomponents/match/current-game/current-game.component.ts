@@ -1,11 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {SummonerspellsContainer} from "../../../models/dto/containers/summonerspells-container";
-import {ChampionsContainer} from "../../../models/dto/containers/champions-container";
 import {RatelimitedRequestsService} from "../../../services/ratelimited-requests.service";
-import {GameApiService} from "../../../services/game-api.service";
 import {CurrentGame} from "../../../models/dto/current-game";
 import {PlayerApiService} from "../../../services/player-api.service";
-import {GameMetadataService} from "../../../services/game-metadata.service";
 import {Subscription} from "rxjs/Subscription";
 import {Observable} from "rxjs/Observable";
 import {ResType} from "../../../enums/api-response-type";

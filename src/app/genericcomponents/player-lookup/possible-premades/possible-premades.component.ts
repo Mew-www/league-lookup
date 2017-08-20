@@ -1,17 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {GameReference} from "../../../../../models/dto/game-reference";
-import {Summoner} from "../../../../../models/dto/summoner";
+import {GameReference} from "../../../models/dto/game-reference";
+import {Summoner} from "../../../models/dto/summoner";
 import {Observable} from "rxjs/Observable";
-import {ResType} from "../../../../../enums/api-response-type";
-import {GameRecordPersonalised} from "../../../../../models/game-record-personalised";
-import {GameRecord} from "../../../../../models/dto/game-record";
-import {Premade} from "../../../../../models/premade";
-import {GameApiService} from "../../../../../services/game-api.service";
-import {RatelimitedRequestsService} from "../../../../../services/ratelimited-requests.service";
-import {ChampionsContainer} from "../../../../../models/dto/containers/champions-container";
-import {ItemsContainer} from "../../../../../models/dto/containers/items-container";
-import {SummonerspellsContainer} from "../../../../../models/dto/containers/summonerspells-container";
-import {GameMetadataService} from "../../../../../services/game-metadata.service";
+import {ResType} from "../../../enums/api-response-type";
+import {GameRecordPersonalised} from "../../../models/game-record-personalised";
+import {GameRecord} from "../../../models/dto/game-record";
+import {Premade} from "../../../models/premade";
+import {GameApiService} from "../../../services/game-api.service";
+import {RatelimitedRequestsService} from "../../../services/ratelimited-requests.service";
+import {ChampionsContainer} from "../../../models/dto/containers/champions-container";
+import {ItemsContainer} from "../../../models/dto/containers/items-container";
+import {SummonerspellsContainer} from "../../../models/dto/containers/summonerspells-container";
+import {GameMetadataService} from "../../../services/game-metadata.service";
 import {Subscription} from "rxjs/Subscription";
 
 @Component({

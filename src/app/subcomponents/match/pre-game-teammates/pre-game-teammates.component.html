@@ -39,7 +39,7 @@
     </label>
   </div>
   <div [dragula]="'teammate-bag'" [dragulaModel]="teammates" class="Teammates">
-    <pre-game-teammate
+    <player-lookup
         *ngFor="let s of teammates"
         class="Teammates__teammate"
         [summoner]="s"
@@ -55,7 +55,7 @@
 
         [hide_statistics]="wait_role_selection && roles_selected < teammates.length"
         (selectedInitialRole)="handleSelectedInitialRole()">
-    </pre-game-teammate>
+    </player-lookup>
   </div>
   <div>
     <button (click)="seek_current_game()">Match started</button>
