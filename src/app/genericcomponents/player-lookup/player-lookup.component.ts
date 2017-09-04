@@ -9,6 +9,7 @@ import {GameApiService} from "../../services/game-api.service";
 import {GameMetadataService} from "../../services/game-metadata.service";
 import {Subscription} from "rxjs/Subscription";
 import {ChampionsContainer} from "../../models/dto/containers/champions-container";
+import {CurrentGameParticipant} from "../../models/dto/current-game-participant";
 
 @Component({
   selector: 'player-lookup',
@@ -18,6 +19,7 @@ import {ChampionsContainer} from "../../models/dto/containers/champions-containe
 export class PlayerLookupComponent implements OnInit {
 
   @Input() summoner: Summoner;
+  @Input() participant_if_ingame: CurrentGameParticipant;
   @Input() other_teammates: Array<Summoner>;
   @Input() queueing_for: GameType;
   @Input() display_summoner_icon: boolean = false;

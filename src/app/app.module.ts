@@ -23,7 +23,7 @@ import { PreGameTeammatesComponent } from './subcomponents/match/pre-game-teamma
 import {DragulaModule} from "ng2-dragula";
 import { PlayerLookupComponent } from './genericcomponents/player-lookup/player-lookup.component';
 import { TeammateLeaguePositionComponent } from './genericcomponents/player-lookup/teammate-league-position/teammate-league-position.component';
-import { RoleSelectorComponent } from './genericcomponents/player-lookup/teammate-role-selector/role-selector.component';
+import { RoleSelectorComponent } from './genericcomponents/player-lookup/role-selector/role-selector.component';
 import { PreferredLanesComponent } from './genericcomponents/player-lookup/previous-roles/preferred-lanes/preferred-lanes.component';
 import { PreviousGamesComponent } from './genericcomponents/player-lookup/previous-games/previous-games.component';
 import { SquarebraceTitledContainerComponent } from './genericcomponents/squarebrace-titled-container/squarebrace-titled-container.component';
@@ -36,6 +36,8 @@ import { DebugComponent } from './subcomponents/debug/debug.component';
 import {LogHistoryService} from "./services/log-history.service";
 import { CurrentGameFinderComponent } from './subcomponents/match/current-game-finder/current-game-finder.component';
 import { PossiblePremadesComponent } from './genericcomponents/player-lookup/possible-premades/possible-premades.component';
+import { SummonerSpellIconComponent } from './genericcomponents/player-lookup/summoner-spell-icon/summoner-spell-icon.component';
+import { ParticipantComponent } from './genericcomponents/player-lookup/participant/participant.component';
 
 const routes: Routes = [
   {'path': "debug", component: DebugComponent},
@@ -66,7 +68,9 @@ export function loggedHttpFactory (xhr_backend: XHRBackend, request_options: Req
     CurrentGameComponent,
     DebugComponent,
     CurrentGameFinderComponent,
-    PossiblePremadesComponent
+    PossiblePremadesComponent,
+    SummonerSpellIconComponent,
+    ParticipantComponent
   ],
   imports: [
     DragulaModule,

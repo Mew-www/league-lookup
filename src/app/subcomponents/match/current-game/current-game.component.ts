@@ -6,6 +6,7 @@ import {Subscription} from "rxjs/Subscription";
 import {Observable} from "rxjs/Observable";
 import {ResType} from "../../../enums/api-response-type";
 import {Summoner} from "../../../models/dto/summoner";
+import {CurrentGameParticipant} from "../../../models/dto/current-game-participant";
 
 @Component({
   selector: 'current-game',
@@ -31,6 +32,10 @@ export class CurrentGameComponent implements OnInit, OnChanges {
 
   private getTeammatesOfPlayer(summoner: Summoner, team: Array<Summoner>) {
     return team.filter(t => t.id != summoner.id);
+  }
+
+  private getPlayerAsParticipant(summoner: Summoner, participants: Array<CurrentGameParticipant>) {
+    return participants.find(p => p.summoner_id === summoner.id);
   }
 
   ngOnInit() {  }

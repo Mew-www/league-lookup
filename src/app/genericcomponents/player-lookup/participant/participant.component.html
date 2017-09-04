@@ -1,0 +1,9 @@
+<div class="Participant">
+  <div class="Participant__champion-icon-container">
+    <img class="Participant__champion-icon" src="{{participant.champion.images.square_url}}" />
+  </div>
+  <div class="Participant__summoner-spells">
+    <summoner-spell-icon [summoner_spell]="participant.summonerspell_1"></summoner-spell-icon>
+    <summoner-spell-icon [summoner_spell]="participant.summonerspell_2"></summoner-spell-icon>
+  </div>
+</div>
