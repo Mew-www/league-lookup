@@ -105,8 +105,11 @@ export class PlayerLookupComponent implements OnInit {
             this.current_queue_past_3_weeks = flexqueue_games_past_3_weeks;
           } else {
             // Unsupported queue type
-            this.error_message = "Unsupported queue type. (This shouldn't be possible. UI y u let this happen?)";
-            this.current_queue_past_3_weeks = [];
+            //this.error_message = "Unsupported queue type. (This shouldn't be possible. UI y u let this happen?)";
+            //this.current_queue_past_3_weeks = [];
+            // tmp default to soloqueue and prompt note
+            this.error_message = "Unsupported queue type -> defaulting to soloqueue. (Do not click try again it is pointless)";
+            this.current_queue_past_3_weeks = soloqueue_games_past_3_weeks;
           }
         } else if (api_res.type === ResType.ERROR) {
           this.error_message = `An error happened. Try again later. (${api_res.error})`;
