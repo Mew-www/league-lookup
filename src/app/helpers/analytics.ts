@@ -84,7 +84,7 @@ export class Analytics {
       });
   }
 
-  // Lane must be either 1st, or have > 15 games, or be > 0.5 ratio to 1st most-played lane
+  // In place addition; Lane must be either 1st, or have > 15 games, or be > 0.5 ratio to 1st most-played lane
   public static addPlayedChampionLanesCalculations(most_played_champion) {
     let first_sorted_lane = null;
     most_played_champion.lanes = Object.keys(most_played_champion.lanes).map(lane => {
