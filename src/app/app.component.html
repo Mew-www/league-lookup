@@ -1,10 +1,12 @@
 <app-setup (setupReady)="handleSetupReady($event)">
   <nav *ngIf="is_setup_ready && !is_konami_triggered">
     <a routerLink="/match" routerLinkActive="active">Match</a>
+    <a routerLink="/roadmap" routerLinkActive="active">Roadmap / Planned</a>
   </nav>
 
   <nav *ngIf="is_setup_ready && is_konami_triggered">
     <a routerLink="/match" routerLinkActive="active">Match</a>
+    <a routerLink="/roadmap" routerLinkActive="active">Roadmap / Planned</a>
     <a routerLink="/debug" routerLinkActive="active">Debug</a>
   </nav>
 </app-setup>

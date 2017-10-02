@@ -38,10 +38,12 @@ import { CurrentGameFinderComponent } from './subcomponents/match/current-game-f
 import { PossiblePremadesComponent } from './genericcomponents/player-lookup/possible-premades/possible-premades.component';
 import { SummonerSpellIconComponent } from './genericcomponents/player-lookup/summoner-spell-icon/summoner-spell-icon.component';
 import { ParticipantComponent } from './genericcomponents/player-lookup/participant/participant.component';
+import { RoadmapComponent } from './subcomponents/roadmap/roadmap.component';
 
 const routes: Routes = [
   {'path': "debug", component: DebugComponent},
   {'path': "match", component: MatchComponent, canActivate: [CanActivateViaRegionGuard]},
+  {'path': "roadmap", component: RoadmapComponent, canActivate: [CanActivateViaRegionGuard]},
   {'path': "**", component: MatchComponent, canActivate: [CanActivateViaRegionGuard]}
 ];
 
@@ -70,7 +72,8 @@ export function loggedHttpFactory (xhr_backend: XHRBackend, request_options: Req
     CurrentGameFinderComponent,
     PossiblePremadesComponent,
     SummonerSpellIconComponent,
-    ParticipantComponent
+    ParticipantComponent,
+    RoadmapComponent
   ],
   imports: [
     DragulaModule,
