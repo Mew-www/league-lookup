@@ -1,6 +1,3 @@
-//@import '../../../../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../../../../../node_modules/font-awesome/css/font-awesome.min.css';
-
 %clearfix { &:after { content: " "; display: table; clear: both; } }
 
 .ChatParser {
@@ -11,10 +8,16 @@
     margin: 0;
     margin-top: 4px;
     margin-bottom: 2px;
-    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+100&0.33+0,0+100; */
-    background: -moz-linear-gradient(left, rgba(0,0,0,0.33) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(left, rgba(0,0,0,0.33) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to right, rgba(0,0,0,0.33) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#10243a+0,000000+100&1+0,0+100 */
+    // For lighter background
+    //background: -moz-linear-gradient(left, rgba(16,36,58,1) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    //background: -webkit-linear-gradient(left, rgba(16,36,58,1) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    //background: linear-gradient(to right, rgba(16,36,58,1) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    // For darker background
+    background: -moz-linear-gradient(left, rgba(20, 72, 129, 1) 0%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(20, 72, 129, 1) 0%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(20, 72, 129, 1) 0%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    color: #FFFFFF;
     &-text {
       font-family: "Roboto Mono", monospace;
     }
@@ -26,8 +29,12 @@
   &__controls {
     padding: 3px;
     border: 1px solid slategray;
-    box-shadow: 2px 2px 4px 0 #c9c9c9;
+    //box-shadow: 2px 2px 4px 0 #c9c9c9; // For lighter background
+    box-shadow: 2px 2px 4px 0 #000; // For darker background
     margin-top: 3px;
+    //background: rgba(73, 73, 153, 0.33); // For lighter background (e.g. white)
+    background: rgba(73, 73, 153, 0.95); // For darker background
+    color: #F4F4F4;
   }
 
   // #1 Float begin
@@ -73,7 +80,7 @@
     }
     &-clarification-icon {
       cursor: help;
-      color: darkmagenta;
+      color: #ff00d3;
     }
     &-paste-input {
       font-family: monospace, serif;
@@ -86,11 +93,9 @@
       display: block;
       font-family: Roboto, 'sans-serif';
     }
-    &-clarification-text {
-      display: block;
-      font-family: Roboto, 'sans-serif';
-      font-size: 14px;
-      color: darkmagenta;
+    &-clarification-icon {
+      cursor: help;
+      color: #ff00d3;
     }
     &-paste-input {
       font-family: monospace, serif;

@@ -16,6 +16,8 @@
           [class.HeaderRegionSelector__region-btn--active]="region.id === active_region"
           (click)="selectedRegion.emit(region.id)"
   >
+    <span *ngIf="region.id === active_region" class="HeaderRegionSelector__region-icon fa fa-globe"></span>
+
     <span class="HeaderRegionSelector__text HeaderRegionSelector__text--emp">{{region.id}}</span>
   </button>
 </div>

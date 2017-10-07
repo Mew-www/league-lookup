@@ -18,9 +18,9 @@
           - 3 lines for content
           - 0.1 extra line for <disclaimer> super/sub overflows (this is kinda vague what's exact but 0.1 seems to work
           - 4+4 px pad
-          - 1px to prevent overflow detection at otherwise-100%-height-content
+          - 16x to prevent overflow detection at otherwise-100%-height-content
       */
-      min-height: calc(100vh - 3.75em - 0.1em - 8px - 1px);
+      min-height: calc(100vh - 3.75em - 0.1em - 8px - 16px);
     }
     .disclaimer {
       width: 30%;

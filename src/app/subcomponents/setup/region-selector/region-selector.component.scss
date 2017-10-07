@@ -34,23 +34,36 @@
 }
 
 .HeaderRegionSelector {
-  &__region-btn {
-    padding-top: 3px;
-    padding-bottom: 3px;
-
-    &--active {
-      border: 3px solid lightblue;
-    }
-  }
+  margin-bottom: 16px;
 
   &__text {
-    color: black;
+    color: #000;
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-variant: small-caps;
 
     &--title {
+      margin-top: 0;
       margin-bottom: 3px;
+      color: #FFF;
+      text-shadow: 1px 0px grey, -1px -1px black;
     }
+  }
+
+  &__region-btn {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    cursor: pointer;
+    color: #000;
+
+    &--active {
+      border: 3px solid #0f7155;
+      border-radius: 4px;
+    }
+  }
+
+  &__region-icon {
+    color: #0f7155;
+    font-size: 16px;
   }
 }

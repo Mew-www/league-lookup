@@ -18,6 +18,12 @@
     text-align: center;
     position: relative;
     top: -0.34em;
+    color: #FFF;
+    text-shadow: 1px 0px grey, -1px -1px black;
+    padding: 6px 4px;
+    background: rgba(118, 118, 118, 0.6);
+    border-radius: 7px;
+    margin-top: 9px;
   }
   &__control {
     float: left;
