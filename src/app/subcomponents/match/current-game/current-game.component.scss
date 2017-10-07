@@ -1,5 +1,6 @@
 .CurrentGame {
   display: table;
+  background: #FFF;
 }
 
 .CloseBtn {
@@ -10,8 +11,8 @@
   display: table;
   padding: 3px;
   border: 1px solid slategray;
-  box-shadow: 2px 2px 4px 0 #c9c9c9;
   margin-top: 3px;
+  margin-bottom: 3px;
 
   // Side-by-side viewable when minified
   float: left;
